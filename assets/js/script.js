@@ -9,10 +9,10 @@ var playerCompleteTime = null;
 
 
 var createBoard = function() {
+    //add background game music
     var backgroundSound = new Audio();
     backgroundSound.src = "assets/css/sounds/Surreal-Chase_Looping.mp3"
     backgroundSound.play();
-
 
     //Define board size
     // var gameArray = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
@@ -43,7 +43,7 @@ var createBoard = function() {
         shootBox.setAttribute("style","box-sizing: border-box");
         shootBox.style.backgroundColor = createRandomColor();
         shootBox.innerText = gameArray[i]
-        var gameBoard = document.querySelector(".left-col");
+        var gameBoard = document.querySelector(".game-board");
         gameBoard.appendChild(shootBox);
     }
 

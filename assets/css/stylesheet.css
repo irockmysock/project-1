@@ -1,16 +1,74 @@
-body {
-	background-color: grey;
+body{
+	background-color: rgba(12,21,22,1);
+	background-image: url('images/game-background.png');
+	background-repeat: no-repeat;
+	background-size: contain;
+	color: white;
+	display: flex;
+	justify-content: center;
+}
+
+.container {
+	width:70%;
+	height: 70%;
+}
+
+.header {
+	border: 5px solid red;
+	text-align: center;
+}
+
+
+.game-border {
+	box-sizing: border-box;
+	background-image: url('images/game-border.png');
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	background-position: center;
+	opacity: 0.75;
+	width: 100%;
+	height:600px;
+	border: 5px solid orange;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*body {
+	background-image: url('images/game-background.png');
+	background-repeat: no-repeat;
+	background-size: cover;
 	text-align: center;
 	display: flex;
-/*	height: 100vh;*/
+	flex-flow: row wrap;
 }
 
 button {
 	display:block;
 }
 
+
+.header {
+	text-align: center;
+	box-sizing: border-box;
+	width: 100%;
+}
+
 .timer-display {
-	/*background-image: url('gun-pointer.png');*/
 	background-color: black;
 	color: white;
 	width: 300px;
@@ -19,17 +77,18 @@ button {
 }
 
 
-.container {
-	border:5px solid black;
-	height:500px;
-	width:800px;
+.game-container {
+	background-image: url('images/game-border.png');
+	border:5px solid yellow;
+	height:70%;
+	width:70%;*/
 	/*display: inline-block;*/
-	display: flex;
+	/*display: flex;*/
 /*	justify-content: center;*/
-}
+/*}*/
 
 
-.left-col {
+/*.game-board {
 	border: 5px solid red;
 	height:98%;
 	width: 50%;
@@ -37,18 +96,18 @@ button {
 	flex-wrap: wrap;
 	cursor: url('images/gun-pointer32px.png'), auto;
 }
-
-.right-col {
+*/
+/*.right-col {
 	border: 5px solid blue;
 	height:98%;
 	width:50%;
 	/*display: inline-block;*/
-}
+/*}*/*/
 
-.shotBox {
+./*shotBox {
 	border: 5px solid green;
 	width: 25%;
 	height: 25%;
 	box-sizing: border-box;
 
-}
+}*/
