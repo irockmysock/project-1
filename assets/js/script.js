@@ -22,17 +22,24 @@ var createBoard = function() {
     //create gameboard based on baordsize with random numbers
     for (i = 0; i < gameArray.length; i++) {
         var shootBox = document.createElement("div");
-        shootBox.setAttribute("id", gameArray[i]+1);
+        shootBox.setAttribute("id", gameArray[i]);
         shootBox.setAttribute("class","shotBox");
         shootBox.setAttribute("style","width: 25%");
         shootBox.setAttribute("style","height: 25%");
         shootBox.setAttribute("style","box-sizing: border-box");
-        shootBox.innerText = gameArray[i]+1
+        shootBox.innerText = gameArray[i]
         var gameBoard = document.querySelector(".left-col");
         gameBoard.appendChild(shootBox);
     }
 
+    var fireOnBox   = function() {
+        event.target.style.visibility = "hidden";
+    }
 
+    for (i = 0; i < gameArray.length; i++) {
+        var selectBox = document.querySelectorAll(".shotBox");
+        selectBox[i].addEventListener('click',fireOnBox);
+    }
 
 
 }
@@ -42,14 +49,16 @@ document.querySelector("button").addEventListener('click',createBoard);
 
 
 
-var fireOnBox   = function() {
-    event.target.hidden = true;
-}
+// var fireOnBox   = function() {
+//     event.target.hidden = true;
+// }
 
 
+// for (i = 0; i < gameArray.length; i++){
+    // document.querySelectorAll(".shotBox")[i].addEventListener('click',fireOnBox);
+// }
 
-document.querySelectorAll(".shotBox")[0].addEventListener('click',fireOnBox);
-
+// document.querySelectorAll(".shotBox")[0].addEventListener('click',fireOnBox);
 
 
 // document.querySelector(`#${}`)
