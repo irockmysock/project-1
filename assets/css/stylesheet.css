@@ -1,0 +1,36 @@
+body {
+	text-align: center;
+}
+
+
+.container {
+	border:5px solid black;
+	height:500px;
+	width:800px;
+	/*display: inline-block;*/
+	display: flex;
+}
+
+
+.left-col {
+	border: 5px solid red;
+	height:98%;
+	width: 50%;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.right-col {
+	border: 5px solid blue;
+	height:98%;
+	width:50%;
+	/*display: inline-block;*/
+}
+
+.shotBox {
+	border: 5px solid green;
+	width: 25%;
+	height: 25%;
+	box-sizing: border-box;
+
+}
