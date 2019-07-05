@@ -1,11 +1,16 @@
 console.log("Shoot shoot game on!")
 
 
+
+var gameArray = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
+var boxesShot = [];
+
 var createBoard = function() {
     //Define board size
-    var gameArray = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
+    // var gameArray = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
     console.log(gameArray);
     console.log(gameArray.length);
+    // var boxesShot = [];
 
     //shuffle array to randomize numbers on board
     var shuffleArray = function(array) {
@@ -32,8 +37,18 @@ var createBoard = function() {
         gameBoard.appendChild(shootBox);
     }
 
+
+    //function to hide boxes upon click
+    //push boxes that have been shot to boxesShot array
     var fireOnBox   = function() {
-        event.target.style.visibility = "hidden";
+        if (parseInt(event.target.id) === boxesShot.length+1) {
+            event.target.style.visibility = "hidden";
+            boxesShot.push(event.target.id)
+            console.log(boxesShot);
+            checkWin();
+        } else {
+            return;
+        }
     }
 
     for (i = 0; i < gameArray.length; i++) {
@@ -43,6 +58,17 @@ var createBoard = function() {
 
 
 }
+
+
+var checkWin = function(){
+    if (gameArray.length === boxesShot.length) {
+        alert("You Won!");
+    }
+}
+
+
+
+
 
 document.querySelector("button").addEventListener('click',createBoard);
 
