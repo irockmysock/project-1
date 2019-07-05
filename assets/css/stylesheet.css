@@ -1,5 +1,13 @@
 body {
 	text-align: center;
+	display: flex;
+}
+
+.timer-display {
+	background-color: black;
+	color: white;
+	width: 300px;
+	height:100px;
 }
 
 
@@ -9,6 +17,7 @@ body {
 	width:800px;
 	/*display: inline-block;*/
 	display: flex;
+/*	justify-content: center;*/
 }
 
 

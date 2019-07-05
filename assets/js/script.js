@@ -5,6 +5,7 @@ console.log("Shoot shoot game on!")
 var gameArray = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
 var boxesShot = [];
 var counter = 0;
+var playerCompleteTime = null;
 
 
 var createBoard = function() {
@@ -58,20 +59,44 @@ var createBoard = function() {
         selectBox[i].addEventListener('click',fireOnBox);
     }
 
-    setInterval(function(){
-        // console.log(counter)
-        counter++;
-    }, 10)
+    runTimer();
 
 
 }
 
 
+var startTimer = "";
+var runTimer = function(){
+
+    var displayTimer = function( time ){
+        var output = document.querySelector('.timer-display');
+        output.innerText = time;
+    }
+
+    startTimer = setInterval(function(){
+        counter++;
+        var timing = (counter/100).toFixed(2);
+        playerCompleteTime = timing
+        // console.log(counter);
+        displayTimer(`${timing} seconds`);
+    }, 10)
+
+}
+
+
+var stopTimer = function(){
+    clearInterval(startTimer);
+}
+
+
+
+
 var checkWin = function(){
     if (gameArray.length === boxesShot.length) {
-        console.log("counter is: "+counter);
-        var timing = (counter/100).toFixed(2)
-        alert(`Your timing is ${timing} seconds`);
+        // console.log("counter is: "+counter);
+        // var timing = (counter/100).toFixed(2)
+        alert(`Your timing is ${playerCompleteTime} seconds`);
+        stopTimer();
     }
 }
 
