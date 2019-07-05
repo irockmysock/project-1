@@ -9,7 +9,7 @@ var playerCompleteTime = null;
 
 
 var createBoard = function() {
-    //add background game music
+    //add background in-game music
     var backgroundSound = new Audio();
     backgroundSound.src = "assets/css/sounds/Surreal-Chase_Looping.mp3"
     backgroundSound.play();
@@ -33,14 +33,12 @@ var createBoard = function() {
 
     console.log(gameArray);
 
-    //create gameboard based on baordsize with random numbers
+    //create gameboard based on boardsize with random numbers
     for (i = 0; i < gameArray.length; i++) {
         var shootBox = document.createElement("div");
         shootBox.setAttribute("id", gameArray[i]);
         shootBox.setAttribute("class","shotBox");
-        shootBox.setAttribute("style","width: 25%");
-        shootBox.setAttribute("style","height: 25%");
-        shootBox.setAttribute("style","box-sizing: border-box");
+        shootBox.setAttribute("style","box-sizing: border-box; display: inline-block; height: 25%; width: 25%;");
         shootBox.style.backgroundColor = createRandomColor();
         shootBox.innerText = gameArray[i]
         var gameBoard = document.querySelector(".game-board");
@@ -121,11 +119,11 @@ var checkWin = function(){
 
 document.querySelector("button").addEventListener('click',createBoard);
 
-document.addEventListener("DOMContentLoaded", function(event) {
+// document.addEventListener("DOMContentLoaded", function(event) {
 
-    // document.body.addEventListener('mousemove', setRandomBackgroundColor)
+//     // document.body.addEventListener('mousemove', setRandomBackgroundColor)
 
-});
+// });
 
 var createRandomColor = function() {
 

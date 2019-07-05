@@ -18,6 +18,10 @@ body{
 	text-align: center;
 }
 
+.button-div {
+display: flex;
+justify-content: center;
+}
 
 .game-border {
 	box-sizing: border-box;
@@ -29,15 +33,44 @@ body{
 	width: 100%;
 	height:600px;
 	border: 5px solid orange;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
 
+.game-board {
+	box-sizing: border-box;
+	border: 5px solid red;
+	width: 91%;
+	height: 89%;
+	display: flex;
+	flex-wrap: wrap;
+	cursor: url('images/gun-pointer32px.png'), auto;
 }
 
 
+.timer-display {
+	border: 5px solid blue;
+	background-color: black;
+	color: white;
+	width: 48%;
+	height:100%;
+	box-sizing: border-box;
+	display: inline-block;
+}
 
+.timer-div {
+	border: 5px solid green;
+}
 
-
-
-
+h2 {
+	display: inline-block;
+	background-color: yellow;
+	color:black;
+	border: 5px solid pink;
+	box-sizing: border-box;
+	width:48%;
+}
 
 
 
