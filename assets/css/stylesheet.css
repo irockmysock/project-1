@@ -6,21 +6,59 @@ body{
 	color: white;
 	display: flex;
 	justify-content: center;
+	font-family: 'Press Start 2P', cursive;
 }
 
 .container {
-	width:70%;
-	height: 70%;
+	/*width:90%;
+	height: 100%;*/
+}
+
+.game-logo {
+	width: 65px;
+	height: 35px;
 }
 
 .header {
 	border: 5px solid red;
 	text-align: center;
+	background-color: rgba(26,36,38,0.5);
+	font-size: 22px;
+}
+
+.main-container {
+	width:100%;
+	box-sizing: border-box;
+	border: 5px solid blue;
+}
+
+.game-container {
+	border: 5px solid purple;
+	width: 70%;
+	box-sizing: border-box;
+	display: inline-block;
+}
+
+.stats-col {
+	border: 5px solid orange;
+	width: 100%;
+	box-sizing: border-box;
+	display: inline-block;
+}
+
+
+.stats-container {
+	border: 5px solid red;
+	box-sizing: border-box;
+	width: 25%;
+	height: 100%;
+	display: inline-block;
 }
 
 .button-div {
-display: flex;
-justify-content: center;
+	border: 5px solid orange;
+	display: flex;
+	justify-content: center;
 }
 
 .game-border {
@@ -36,16 +74,18 @@ justify-content: center;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	cursor: url('images/gun-pointer32px.png'), auto;
 }
 
 .game-board {
+	background-color: rgba(255,255,255,0.3);
 	box-sizing: border-box;
 	border: 5px solid red;
 	width: 91%;
 	height: 89%;
 	display: flex;
 	flex-wrap: wrap;
-	cursor: url('images/gun-pointer32px.png'), auto;
+
 }
 
 
@@ -57,22 +97,63 @@ justify-content: center;
 	height:100%;
 	box-sizing: border-box;
 	display: inline-block;
+	font-family: 'Press Start 2P', cursive;
+	text-align: center;
 }
 
 .timer-div {
 	border: 5px solid green;
+	font-family: 'Press Start 2P', cursive;
+	text-align: center;
+	display: flex;
+	justify-content: space-around;
 }
 
 h2 {
 	display: inline-block;
 	background-color: yellow;
-	color:black;
+	color: white;
 	border: 5px solid pink;
 	box-sizing: border-box;
 	width:48%;
+
+	font-size: 20px;
+}
+
+h1{
+	margin: 0;
+	font-family: 'Monoton', cursive;
+	color: white;
+	display: inline;
+}
+
+button {
+	font-family: 'Press Start 2P', cursive;
+	padding: 10px 30px;
+	color:white;
+	background-color: rgba(0,0,0,0.7);
+}
+
+#game-title {
+	font-family: 'Mountains of Christmas', cursive;
+	color: white;
 }
 
 
+.shotBox {
+	font-family: 'Press Start 2P', cursive;
+	font-size: 50px;
+	text-align: center;
+}
+
+
+
+
+    font-family: 'Press Start 2P', cursive;
+
+    font-family: 'Mountains of Christmas', cursive;
+
+    font-family: 'Monoton', cursive;
 
 
 

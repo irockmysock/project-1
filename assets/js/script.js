@@ -1,7 +1,6 @@
 console.log("Shoot shoot game on!")
 
 
-
 var gameArray = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
 var boxesShot = [];
 var counter = 0;
@@ -38,7 +37,7 @@ var createBoard = function() {
         var shootBox = document.createElement("div");
         shootBox.setAttribute("id", gameArray[i]);
         shootBox.setAttribute("class","shotBox");
-        shootBox.setAttribute("style","box-sizing: border-box; display: inline-block; height: 25%; width: 25%;");
+        shootBox.setAttribute("style","box-sizing: border-box; display: inline-block; height: 25%; width: 25%; border-radius: 15px;");
         shootBox.style.backgroundColor = createRandomColor();
         shootBox.innerText = gameArray[i]
         var gameBoard = document.querySelector(".game-board");
@@ -60,14 +59,14 @@ var createBoard = function() {
             console.log(boxesShot);
             checkWin();
         } else {
-            for ( i=0; i < gameArray.length; i++) {
-                    var box = document.querySelectorAll(".shotBox")[i];
-                    box.style.backgroundColor = "black";
-                    document.querySelectorAll(".shotBox")[i].disabled = true;
-                    var hangGame = setTimeout(function(box){
-                        box.style.backgroundColor = "initial";
-                    }, 3000);
-            }
+            // for ( i=0; i < gameArray.length; i++) {
+            //         var box = document.querySelectorAll(".shotBox")[i];
+            //         box.style.backgroundColor = "black";
+            //         document.querySelectorAll(".shotBox")[i].disabled = true;
+            //         var hangGame = setTimeout(function(box){
+            //             box.style.backgroundColor = "initial";
+            //         }, 3000);
+            // }
             return;
         }
     }
@@ -100,6 +99,11 @@ var runTimer = function(){
 
 var stopTimer = function(){
     clearInterval(startTimer);
+}
+
+var clearTimer = function (time) {
+    var output = document.querySelector('.timer-display');
+    output.innerText = null;
 }
 /////////////////////////////////////////////////////
 ////////////////////////////////////////////////////
@@ -135,35 +139,3 @@ var setRandomColor = function() {
 
     document.body.style.backgroundColor = createRandomColor();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// var counter = 0;
-// setInterval(function(){
-//     counter ++
-// },timer)
