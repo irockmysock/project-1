@@ -20,16 +20,16 @@ body{
 }
 
 .header {
-	border: 5px solid red;
+	/*border: 5px solid red;*/
 	text-align: center;
 	background-color: rgba(26,36,38,0.5);
 	font-size: 22px;
+	padding: 15px 0 20px 0;
 }
 
 .main-container {
-	width:100%;
 	box-sizing: border-box;
-	border: 5px solid blue;
+	/*border: 5px solid blue;*/
 }
 
 .game-container {
@@ -91,17 +91,18 @@ body{
 
 .timer-display {
 	border: 5px solid blue;
-	background-color: black;
 	color: white;
 	width: 48%;
 	height:100%;
 	box-sizing: border-box;
 	display: inline-block;
 	font-family: 'Press Start 2P', cursive;
+	font-size: 20px;
 	text-align: center;
 }
 
 .timer-div {
+	background-color: rgba(26,36,38,0.8);
 	border: 5px solid green;
 	font-family: 'Press Start 2P', cursive;
 	text-align: center;
@@ -109,15 +110,31 @@ body{
 	justify-content: space-around;
 }
 
+.stats-container {
+	text-align: center;
+}
+
+.stage-div {
+	text-align: center;
+}
+
+.stage-div {
+	margin: 5px 5px 20px 5px;
+}
+
+.stats-div {
+text-align: left;
+}
+
+
+
 h2 {
-	display: inline-block;
-	background-color: yellow;
+	display: inline;
 	color: white;
 	border: 5px solid pink;
 	box-sizing: border-box;
 	width:48%;
-
-	font-size: 20px;
+	font-size: 18px;
 }
 
 h1{
@@ -127,11 +144,28 @@ h1{
 	display: inline;
 }
 
+h3 {
+	font-size: 12px;
+	margin: 5px 5px 20px 5px;
+	text-align: center;
+}
+
+p {
+	font-size: 10px;
+}
+
+
 button {
 	font-family: 'Press Start 2P', cursive;
+	font-size: 10px;
 	padding: 10px 30px;
 	color:white;
 	background-color: rgba(0,0,0,0.7);
+	margin: 5px;
+}
+
+button:hover {
+	background-color: rgba(65,75,80,0.8)
 }
 
 #game-title {
