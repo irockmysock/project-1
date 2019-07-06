@@ -3,7 +3,7 @@ console.log("Shoot shoot game on!")
 //Global variables
 var stageOneArray = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
 var boxesShot = [];
-// var counter = 0;
+var counter = 0;
 var CompleteStageOneTime = null;
 var CompleteStageTwoTime = null;
 var CompleteStageThreeTime = null;
@@ -52,7 +52,10 @@ var clearBoard = function() {
     var board = document.querySelector(".game-board");
     while (board.firstChild) {
         board.removeChild(board.firstChild);
-    }
+    };
+    counter = 0;
+    boxesShot =[];
+
 }
 
 
@@ -72,6 +75,7 @@ var stageOneStart = function() {
 
     //Define board size
     // var stageOneArray = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
+    displayTimer();
     runTimer1();
     console.log(stageOneArray);
     console.log(stageOneArray.length);
@@ -265,14 +269,19 @@ var stageTwoStart = function() {
 ////////////////Timer Functions//////////////////////
 var startTimer = "";
 
-//Stage 1 timer
-var runTimer1= function(){
-    //display timer
-    counter = 0;
-    var displayTimer = function( time ){
+var displayTimer = function( time ){
         var output = document.querySelector('.timer-display');
         output.innerText = time;
     }
+
+//Stage 1 timer
+var runTimer1= function(){
+    // //display timer
+    // // counter = 0;
+    // var displayTimer = function( time ){
+    //     var output = document.querySelector('.timer-display');
+    //     output.innerText = time;
+    // }
     //start timer
     startTimer = setInterval(function(){
         counter++;
@@ -305,22 +314,22 @@ var runTimer2 = function(){
 
 }
 
-var runTimer3 = function(){
-    //display timer
-    var displayTimer = function( time ){
-        var output = document.querySelector('.timer-display');
-        output.innerText = time;
-    }
-    //start timer
-    startTimer = setInterval(function(){
-        counter++;
-        var timing = (counter/100).toFixed(2);
-        CompleteStageThreeTime = timing
-        // console.log(counter);
-        displayTimer(`${timing} seconds`);
-    }, 10);
+// var runTimer3 = function(){
+//     //display timer
+//     var displayTimer = function( time ){
+//         var output = document.querySelector('.timer-display');
+//         output.innerText = time;
+//     }
+//     //start timer
+//     startTimer = setInterval(function(){
+//         counter++;
+//         var timing = (counter/100).toFixed(2);
+//         CompleteStageThreeTime = timing
+//         // console.log(counter);
+//         displayTimer(`${timing} seconds`);
+//     }, 10);
 
-}
+// }
 
 var stopTimer = function(){
     clearInterval(startTimer);
@@ -343,7 +352,13 @@ var checkWinStageOne = function(){
         // var timing = (counter/100).toFixed(2)
         // alert(`Your timing is ${CompleteStageOneTime} seconds`);
         stopTimer();
-        document.getElementById("stage-1-time").innerText = CompleteStageOneTime;
+        if (parseFloat(document.getElementById("stage-1-time").innerText) === 0) {
+            document.getElementById("stage-1-time").innerText = CompleteStageOneTime;
+        } else {
+                if (parseFloat(CompleteStageOneTime) < parseFloat(document.getElementById("stage-1-time").innerText)) {
+                document.getElementById("stage-1-time").innerText = CompleteStageOneTime;
+                }
+        }
     }
 }
 
