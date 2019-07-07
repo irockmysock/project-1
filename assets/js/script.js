@@ -4,6 +4,7 @@ console.log("Shoot shoot game on!")
 var stageOneArray = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
 var stageTwoArray = [];
 var stageThreeArray = [];
+var stageFourArray = [];
 var boxesShot = [];
 var counter = 0;
 var CompleteStageOneTime = null;
@@ -102,6 +103,19 @@ var checkWinStageThree = function(){
     }
 }
 
+var checkWinStageFour = function(){
+    if (stageFourArray.length === boxesShot.length) {
+        stopTimer();
+        if (parseFloat(document.getElementById("stage-4-time").innerText) === 0) {
+            document.getElementById("stage-4-time").innerText = CompleteStageFourTime;
+        } else {
+                if (parseFloat(CompleteStageFourTime) < parseFloat(document.getElementById("stage-4-time").innerText)) {
+                document.getElementById("stage-4-time").innerText = CompleteStageFourTime;
+                }
+        }
+    }
+}
+
 
 /////////////////////
 // TIMER FUNCTIONS //
@@ -164,6 +178,18 @@ var runTimer3= function(){
     }, 10);
 }
 
+//Stage 4 timer to log stage completion timing
+var runTimer4= function(){
+
+    //start timer
+    startTimer = setInterval(function(){
+        counter++;
+        var timing = (counter/100).toFixed(2);
+        CompleteStageFourTime = timing
+        // console.log(counter);
+        displayTimer(`${timing} seconds`);
+    }, 10);
+}
 
 /////////////////////
 ///  GAME SOUNDS ///
@@ -379,7 +405,76 @@ var stageThreeStart = function() {
     }
 }
 
+///////////////////////////////////////////////////////////////////////
+///////////////////       STAGE FOUR        ///////////////////////////
 
+var stageFourStart = function() {
+    //add background in-game music
+    var backgroundSound = new Audio();
+    backgroundSound.src = "assets/css/sounds/Surreal-Chase_Looping.mp3"
+    // backgroundSound.play();
+
+    //clear timers and board and reset arrays/
+    readyGame();
+    runTimer4();
+    stageFourArray = [];
+    // shuffleArray(stageOneArray);
+    for (i = 1; i < 5; i++) {
+        stageFourArray.push(i);
+    }
+    console.log(stageFourArray);
+
+    //create gameboard with 4 numbers in order in moving divs
+    for (i = 0; i < stageFourArray.length; i++) {
+        var shootBox = document.createElement("div");
+        shootBox.setAttribute("id", stageFourArray[i]);
+        shootBox.setAttribute("class","content");
+        shootBox.setAttribute("style","box-sizing: border-box; height: 25%; width: 25%; border-radius: 15px; padding: 25px 0;");
+        shootBox.style.backgroundColor = createRandomColor();
+        shootBox.innerText = stageFourArray[i];
+        var gameBoard = document.querySelector(".game-board");
+        // document.querySelector(".game-board").style.display = "block";
+        gameBoard.appendChild(shootBox);
+    }
+
+    var fireOnBox   = function() {
+        var bangSound = new Audio();
+        bangSound.src = "assets/css/sounds/gunshot.mp3"
+        bangSound.play();
+
+        //box disappears if shot in order
+        if (parseInt(event.target.id) === boxesShot.length+1) {
+            event.target.style.visibility = "hidden";
+            boxesShot.push(event.target.id)
+            console.log(boxesShot);
+            checkWinStageFour();
+        } else {
+            // box turns black but number still visible and click disabled for 2 seconds
+            var wrongBang = new Audio();
+            wrongBang.src = "assets/css/sounds/Buzz.mp3"
+            wrongBang.play();
+            for ( i=0; i < stageFourArray.length; i++) {
+                    var box = document.querySelectorAll(".content")[i];
+                    box.style.backgroundColor = "black";
+                    box.style.color = "grey";
+                    box.removeEventListener('click', fireOnBox);
+
+                    var returnToNormal = setTimeout(function(box){
+                        for ( i=0; i < stageFourArray.length; i++) {
+                            document.querySelectorAll(".content")[i].style.backgroundColor = createRandomColor();
+                            document.querySelectorAll(".content")[i].style.color = "white";
+                            document.querySelectorAll(".content")[i].addEventListener('click',fireOnBox);
+                        }
+                    }, 2000);
+            }
+        }
+    }
+
+    for (i = 0; i < stageFourArray.length; i++) {
+        var selectBox = document.querySelectorAll(".content");
+        selectBox[i].addEventListener('click',fireOnBox);
+    }
+}
 
 
 
@@ -509,7 +604,7 @@ var stageThreeStart = function() {
 document.querySelector("#stage1").addEventListener('click',stageOneStart);
 document.querySelector("#stage2").addEventListener('click',stageTwoStart);
 document.querySelector("#stage3").addEventListener('click',stageThreeStart);
-// document.querySelector("#stage4").addEventListener('click',stageFourStart);
+document.querySelector("#stage4").addEventListener('click',stageFourStart);
 
 // document.addEventListener("DOMContentLoaded", function(event) {
 

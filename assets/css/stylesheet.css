@@ -81,7 +81,8 @@ body{
 	border: 5px solid red;
 	width: 91%;
 	height: 89%;
-	display: flex;
+	/*display: flex;*/
+	display: block;
 	flex-wrap: wrap;
 }
 
@@ -187,6 +188,34 @@ button:hover {
 
 
 
+.test-div{background-color: #ddd;padding: 25px;}
+.content {
+	width: 25%;
+	height: 25%;
+	background-color: red;
+	display: block;
+	animation: move 3s linear infinite; }
+
+            @keyframes move{
+
+                0%{
+                    transform:translate(300px);
+                    opacity:1;
+                }
+
+                50%{
+                    transform:translate(100%);
+                    opacity:1;
+                }
+                100%{
+                		transform:translate(300px);
+                    opacity:1;
+                }
+            }
+
+
+
+
 font-family: 'Black Ops One', cursive;
 
 font-family: 'Bungee Inline', cursive;
@@ -196,74 +225,3 @@ font-family: 'Press Start 2P', cursive;
 font-family: 'Mountains of Christmas', cursive;
 
 font-family: 'Monoton', cursive;
-
-
-
-
-
-
-
-
-/*body {
-	background-image: url('images/game-background.png');
-	background-repeat: no-repeat;
-	background-size: cover;
-	text-align: center;
-	display: flex;
-	flex-flow: row wrap;
-}
-
-button {
-	display:block;
-}
-
-
-.header {
-	text-align: center;
-	box-sizing: border-box;
-	width: 100%;
-}
-
-.timer-display {
-	background-color: black;
-	color: white;
-	width: 300px;
-	height:100px;
-
-}
-
-
-.game-container {
-	background-image: url('images/game-border.png');
-	border:5px solid yellow;
-	height:70%;
-	width:70%;*/
-	/*display: inline-block;*/
-	/*display: flex;*/
-/*	justify-content: center;*/
-/*}*/
-
-
-/*.game-board {
-	border: 5px solid red;
-	height:98%;
-	width: 50%;
-	display: flex;
-	flex-wrap: wrap;
-	cursor: url('images/gun-pointer32px.png'), auto;
-}
-*/
-/*.right-col {
-	border: 5px solid blue;
-	height:98%;
-	width:50%;
-	/*display: inline-block;*/
-/*}*/*/
-
-./*shotBox {
-	border: 5px solid green;
-	width: 25%;
-	height: 25%;
-	box-sizing: border-box;
-
-}*/
