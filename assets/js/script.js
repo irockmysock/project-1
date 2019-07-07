@@ -170,11 +170,11 @@ var runTimer3= function(){
 ////////////////////
 
 //add gunshot sound to click
-var bangSound = new Audio();
-bangSound.src = "assets/css/sounds/gunshot.mp3"
+// var bangSound = new Audio();
+// bangSound.src = "assets/css/sounds/gunshot.mp3"
 
-var wrongBang = new Audio();
-wrongBang.src = "assets/css/sounds/Buzz.mp3"
+// var wrongBang = new Audio();
+// wrongBang.src = "assets/css/sounds/Buzz.mp3"
 
 /////////////////////////////////////////////////////
 ////////////////////////////////////////////////////
@@ -203,7 +203,7 @@ var stageOneStart = function() {
         var shootBox = document.createElement("div");
         shootBox.setAttribute("id", stageOneArray[i]);
         shootBox.setAttribute("class","shotBox");
-        shootBox.setAttribute("style","box-sizing: border-box; display: inline-block; height: 25%; width: 25%; border-radius: 15px;");
+        shootBox.setAttribute("style","box-sizing: border-box; display: inline-block; height: 25%; width: 25%; border-radius: 15px; padding: 25px 0;");
         shootBox.style.backgroundColor = createRandomColor();
         shootBox.innerText = stageOneArray[i]
         var gameBoard = document.querySelector(".game-board");
@@ -213,8 +213,8 @@ var stageOneStart = function() {
     //  click function in game
     var fireOnBox   = function() {
         // //add gunshot sound to click
-        // var bangSound = new Audio();
-        // bangSound.src = "assets/css/sounds/gunshot.mp3"
+        var bangSound = new Audio();
+        bangSound.src = "assets/css/sounds/gunshot.mp3"
         bangSound.play();
         //box disappears if shot in order
         if (parseInt(event.target.id) === boxesShot.length+1) {
@@ -251,13 +251,12 @@ var stageTwoStart = function() {
     }
     console.log(stageTwoArray);
 
-
     //create gameboard based on boardsize with random numbers
     for (i = 0; i < stageTwoArray.length; i++) {
         var shootBox = document.createElement("div");
         shootBox.setAttribute("id", stageTwoArray[i]);
         shootBox.setAttribute("class","shotBox");
-        shootBox.setAttribute("style","box-sizing: border-box; display: inline-block; height: 25%; width: 25%; border-radius: 15px;");
+        shootBox.setAttribute("style","box-sizing: border-box; display: inline-block; height: 25%; width: 25%; border-radius: 15px; opacity: 1; padding: 25px 0;");
         shootBox.style.backgroundColor = createRandomColor();
         shootBox.innerText = stageTwoArray[i]
         var gameBoard = document.querySelector(".game-board");
@@ -276,7 +275,9 @@ var stageTwoStart = function() {
             console.log(boxesShot);
             checkWinStageTwo();
         } else {
-            // box turns black but number still visible and click disabled for 2.5 seconds
+            // box turns black but number still visible and click disabled for 2 seconds
+            var wrongBang = new Audio();
+            wrongBang.src = "assets/css/sounds/Buzz.mp3"
             wrongBang.play();
             for ( i=0; i < stageTwoArray.length; i++) {
                     var box = document.querySelectorAll(".shotBox")[i];
@@ -290,7 +291,7 @@ var stageTwoStart = function() {
                             document.querySelectorAll(".shotBox")[i].style.color = "white";
                             document.querySelectorAll(".shotBox")[i].addEventListener('click',fireOnBox);
                         }
-                    }, 2500);
+                    }, 2000);
             }
         }
     }
@@ -331,7 +332,7 @@ var stageThreeStart = function() {
         var shootBox = document.createElement("div");
         shootBox.setAttribute("id", stageThreeArray[i]);
         shootBox.setAttribute("class","shotBox");
-        shootBox.setAttribute("style","box-sizing: border-box; display: inline-block; height: 20%; width: 20%; border-radius: 15px;");
+        shootBox.setAttribute("style","box-sizing: border-box; display: inline-block; height: 20%; width: 20%; border-radius: 15px; padding: 20px 0;");
         shootBox.style.backgroundColor = createRandomColor();
         shootBox.innerText = stageThreeArray[i]
         var gameBoard = document.querySelector(".game-board");
@@ -350,7 +351,9 @@ var stageThreeStart = function() {
             console.log(boxesShot);
             checkWinStageThree();
         } else {
-            // box turns black and click disabled for 2.5 seconds
+            // box turns black and click disabled for 2 seconds
+            var wrongBang = new Audio();
+            wrongBang.src = "assets/css/sounds/Buzz.mp3"
             wrongBang.play();
             for ( i=0; i < stageThreeArray.length; i++) {
                     var box = document.querySelectorAll(".shotBox")[i];
@@ -364,7 +367,7 @@ var stageThreeStart = function() {
                             document.querySelectorAll(".shotBox")[i].style.color = "white"
                             document.querySelectorAll(".shotBox")[i].addEventListener('click',fireOnBox);
                         }
-                    }, 2500);
+                    }, 2000);
             }
         }
     }

@@ -23,7 +23,7 @@ body{
 	text-align: center;
 	background-color: rgba(26,36,38,0.5);
 	font-size: 22px;
-	padding: 15px 0 20px 0;
+	padding: 10px 0 5px 0;
 }
 
 .main-container {
@@ -46,7 +46,7 @@ body{
 
 
 .stats-container {
-	border: 5px solid red;
+	/*border: 5px solid red;*/
 	box-sizing: border-box;
 	width: 25%;
 	height: 100%;
@@ -83,19 +83,18 @@ body{
 	height: 89%;
 	display: flex;
 	flex-wrap: wrap;
-
 }
 
 
 .timer-display {
-	border: 5px solid blue;
+	/*border: 5px solid blue;*/
 	color: white;
 	width: 48%;
 	height:100%;
 	box-sizing: border-box;
 	display: inline-block;
 	font-family: 'Press Start 2P', cursive;
-	font-size: 20px;
+	font-size: 18px;
 	text-align: center;
 }
 
@@ -129,7 +128,6 @@ text-align: left;
 h2 {
 	display: inline;
 	color: white;
-	border: 5px solid pink;
 	box-sizing: border-box;
 	width:48%;
 	font-size: 18px;
@@ -149,7 +147,7 @@ h3 {
 }
 
 p {
-	font-size: 10px;
+	font-size: 12px;
 }
 
 
@@ -172,21 +170,32 @@ button:hover {
 	color: white;
 }
 
+#game-instruct {
+	font-family: 'Mountains of Christmas', cursive;
+	color: white;
+	font-size: 25px;
+	margin: 5px auto;
+}
+
 
 .shotBox {
-	font-family: 'Press Start 2P', cursive;
-	font-size: 50px;
+	font-family: 'Black Ops One', cursive;
+	font-size: 46px;
 	text-align: center;
 }
 
 
 
 
-    font-family: 'Press Start 2P', cursive;
+font-family: 'Black Ops One', cursive;
 
-    font-family: 'Mountains of Christmas', cursive;
+font-family: 'Bungee Inline', cursive;
 
-    font-family: 'Monoton', cursive;
+font-family: 'Press Start 2P', cursive;
+
+font-family: 'Mountains of Christmas', cursive;
+
+font-family: 'Monoton', cursive;
 
 
 
