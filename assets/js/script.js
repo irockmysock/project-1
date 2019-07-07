@@ -40,25 +40,7 @@ var setRandomColor = function() {
 //         bangSound.src = "assets/css/sounds/gunshot.mp3"
 //         bangSound.play();
 
-
-//         if (parseInt(event.target.id) === boxesShot.length+1) {
-//             event.target.style.visibility = "hidden";
-//             boxesShot.push(event.target.id)
-//             console.log(boxesShot);
-//             checkWinStageOne();
-//         } else {
-//             for ( i=0; i < stageOneArray.length; i++) {
-//                     var box = document.querySelectorAll(".shotBox")[i];
-//                     box.style.backgroundColor = "black";
-//                     document.querySelectorAll(".shotBox")[i].disabled = true;
-//                     var hangGame = setTimeout(function(box){
-//                         box.style.backgroundColor = "initial";
-//                     }, 3000);
-//             }
-//             return;
-//         }
-//     }
-
+//remove shotboxes and clears boxesShot array and reset counter
 var clearBoard = function() {
     var board = document.querySelector(".game-board");
     while (board.firstChild) {
@@ -70,6 +52,7 @@ var clearBoard = function() {
 
 var readyGame = function() {
     clearBoard();
+    stopTimer();
     clearTimer();
     displayTimer();
 }
@@ -194,7 +177,7 @@ var stageOneStart = function() {
     runTimer1();
     stageOneArray = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
     console.log(stageOneArray);
-    console.log(stageOneArray.length);
+
 
     //add background in-game music
     var backgroundSound = new Audio();
@@ -321,7 +304,7 @@ var stageThreeStart = function() {
 
     shuffleArray(stageThreeArray);
 
-    // console.log(stageThreeArray);
+    console.log(stageThreeArray);
 
     //add background in-game music
     var backgroundSound = new Audio();
