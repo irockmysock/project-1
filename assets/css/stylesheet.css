@@ -10,8 +10,7 @@ body{
 }
 
 .container {
-	/*width:90%;
-	height: 100%;*/
+	cursor: url('images/shotgun-pointer48px.png'), auto;
 }
 
 .game-logo {
@@ -29,7 +28,6 @@ body{
 
 .main-container {
 	box-sizing: border-box;
-	/*border: 5px solid blue;*/
 }
 
 .game-container {
@@ -162,6 +160,7 @@ button {
 	color:white;
 	background-color: rgba(0,0,0,0.7);
 	margin: 5px;
+	cursor: url('images/shotgun-pointer48px.png'), auto;
 }
 
 button:hover {

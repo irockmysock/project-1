@@ -103,8 +103,10 @@ var checkWinStageThree = function(){
 }
 
 
-/////////////////////////////////////////////////////
-////////////////Timer Functions//////////////////////
+/////////////////////
+// TIMER FUNCTIONS //
+////////////////////
+
 var startTimer = "";
 
 //display timing in game
@@ -162,6 +164,18 @@ var runTimer3= function(){
     }, 10);
 }
 
+
+/////////////////////
+///  GAME SOUNDS ///
+////////////////////
+
+//add gunshot sound to click
+var bangSound = new Audio();
+bangSound.src = "assets/css/sounds/gunshot.mp3"
+
+var wrongBang = new Audio();
+wrongBang.src = "assets/css/sounds/Buzz.mp3"
+
 /////////////////////////////////////////////////////
 ////////////////////////////////////////////////////
 
@@ -198,9 +212,9 @@ var stageOneStart = function() {
 
     //  click function in game
     var fireOnBox   = function() {
-        //add gunshot sound to click
-        var bangSound = new Audio();
-        bangSound.src = "assets/css/sounds/gunshot.mp3"
+        // //add gunshot sound to click
+        // var bangSound = new Audio();
+        // bangSound.src = "assets/css/sounds/gunshot.mp3"
         bangSound.play();
         //box disappears if shot in order
         if (parseInt(event.target.id) === boxesShot.length+1) {
@@ -262,7 +276,8 @@ var stageTwoStart = function() {
             console.log(boxesShot);
             checkWinStageTwo();
         } else {
-            // box turns black but number still visible and click disabled for 2 seconds
+            // box turns black but number still visible and click disabled for 2.5 seconds
+            wrongBang.play();
             for ( i=0; i < stageTwoArray.length; i++) {
                     var box = document.querySelectorAll(".shotBox")[i];
                     box.style.backgroundColor = "black";
@@ -275,7 +290,7 @@ var stageTwoStart = function() {
                             document.querySelectorAll(".shotBox")[i].style.color = "white";
                             document.querySelectorAll(".shotBox")[i].addEventListener('click',fireOnBox);
                         }
-                    }, 2000);
+                    }, 2500);
             }
         }
     }
@@ -323,7 +338,6 @@ var stageThreeStart = function() {
         gameBoard.appendChild(shootBox);
     }
 
-
     var fireOnBox   = function() {
         //add gunshot sound to click
         var bangSound = new Audio();
@@ -336,7 +350,8 @@ var stageThreeStart = function() {
             console.log(boxesShot);
             checkWinStageThree();
         } else {
-            // box turns black and click disabled for 2 seconds
+            // box turns black and click disabled for 2.5 seconds
+            wrongBang.play();
             for ( i=0; i < stageThreeArray.length; i++) {
                     var box = document.querySelectorAll(".shotBox")[i];
                     box.style.backgroundColor = "black";
@@ -349,7 +364,7 @@ var stageThreeStart = function() {
                             document.querySelectorAll(".shotBox")[i].style.color = "white"
                             document.querySelectorAll(".shotBox")[i].addEventListener('click',fireOnBox);
                         }
-                    }, 2000);
+                    }, 2500);
             }
         }
     }
@@ -359,7 +374,6 @@ var stageThreeStart = function() {
         var selectBox = document.querySelectorAll(".shotBox");
         selectBox[i].addEventListener('click',fireOnBox);
     }
-
 }
 
 
@@ -499,14 +513,3 @@ document.querySelector("#stage3").addEventListener('click',stageThreeStart);
 //     // document.body.addEventListener('mousemove', setRandomBackgroundColor)
 
 // });
-
-// var createRandomColor = function() {
-
-//     let color = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
-//     return(color);
-// }
-
-// var setRandomColor = function() {
-
-//     document.body.style.backgroundColor = createRandomColor();
-// }
