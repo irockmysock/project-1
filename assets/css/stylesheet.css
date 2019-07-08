@@ -152,7 +152,7 @@ p {
 }
 
 
-button {
+.stage-buttons {
 	font-family: 'Press Start 2P', cursive;
 	font-size: 10px;
 	padding: 10px 30px;
@@ -162,8 +162,9 @@ button {
 	cursor: url('images/shotgun-pointer48px.png'), auto;
 }
 
-button:hover {
-	background-color: rgba(65,75,80,0.8)
+.stage-buttons:hover {
+	background-color: rgba(65,75,80,0.8);
+	font-size: 12px;
 }
 
 #game-title {
@@ -186,32 +187,133 @@ button:hover {
 }
 
 
+/* Modal styles */
+.modal-header {
+	color:white;
+	font-family: 'Mountains of Christmas', cursive;
+	font-size: 30px
+}
+
+h5 {
+	color:white;
+	font-family: 'Mountains of Christmas', cursive;
+	font-size: 30px
+}
+
+.modal-content {
+	background-color: rgba(13,21,22,0.9);
+	color: white;
+}
+
+#modal-text {
+	font-family: 'Mountains of Christmas', cursive;
+	color:white;
+	font-size: 22px;
+}
+
+.modal-close-button {
+	font-family: 'Mountains of Christmas', cursive;
+	color:white;
+	font-size: 22px;
+	padding: 2px 30px;
+	background-color: rgba(130,140,145,0.8);
+	border-radius: 15px;
+}
+
+.modal-close-button:hover {
+	background-color: rgba(14,28,21,0.8);
+	font-size: 24px;
+}
+
+/*stage four keyframes and id selectors*/
+#s41 {
+	animation: stage-4-1 5s linear infinite;
+}
+
+#s42 {
+	animation: stage-4-2 5s linear infinite;
+}
+
+#s43 {
+	animation: stage-4-3 5s linear infinite;
+}
+
+#s44 {
+	animation: stage-4-4 5s linear infinite;
+}
+
+@keyframes stage-4-1 {
+	0% {
+		transform:translate(0);
+	}
+	50% {
+		transform:translate(75%);
+	}
+	100% {
+	transform:translate(0);
+	}
+}
+
+@keyframes stage-4-2 {
+	0% {
+		transform:translate(0);
+	}
+	50% {
+		transform:translate(150%);
+	}
+	100% {
+	transform:translate(0);
+	}
+}
 
 
-.test-div{background-color: #ddd;padding: 25px;}
-.content {
+@keyframes stage-4-3 {
+	0% {
+		transform:translate(0);
+	}
+	50% {
+		transform:translate(225%);
+	}
+	100% {
+	transform:translate(0);
+	}
+}
+
+@keyframes stage-4-4 {
+	0% {
+		transform:translate(0);
+	}
+	50% {
+		transform:translate(300%);
+	}
+	100% {
+	transform:translate(0);
+	}
+}
+
+/*@keyframes stage-4-1 {
+	0% {
+		transform:translate(0);
+		opacity:1;
+	}
+	50% {
+		transform:translate(200%);
+		opacity:1;
+	}
+	100% {
+	transform:translate(0);
+	opacity:1;
+	}
+}*/
+
+/*.content {
 	width: 25%;
 	height: 25%;
 	background-color: red;
 	display: block;
-	animation: move 3s linear infinite; }
+	animation: stage-4-1 3s linear infinite; }*/
 
-            @keyframes move{
 
-                0%{
-                    transform:translate(300px);
-                    opacity:1;
-                }
-
-                50%{
-                    transform:translate(100%);
-                    opacity:1;
-                }
-                100%{
-                		transform:translate(300px);
-                    opacity:1;
-                }
-            }
 
 
 

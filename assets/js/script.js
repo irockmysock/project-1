@@ -13,6 +13,7 @@ var CompleteStageThreeTime = null;
 var CompleteStageFourTime = null;
 
 
+
 ////////////////////
 // GAME FUNCTIONS //
 ///////////////////
@@ -65,14 +66,24 @@ var checkWinStageOne = function(){
         // alert(`Your timing is ${CompleteStageOneTime} seconds`);
         stopTimer();
         if (parseFloat(document.getElementById("stage-1-time").innerText) === 0) {
+            //ADD OVERLAY (STAGE 1 COMPLETE. YOUR TIME IS )
             document.getElementById("stage-1-time").innerText = CompleteStageOneTime;
+            document.getElementById("modal-title").innerText = `Stage 1 Complete`;
+            document.getElementById("modal-text").innerText = `Your best time is ${CompleteStageOneTime} seconds.`
+            $('#high-score-modal').modal('show');
         } else {
+                //ADD OVERLAY (CONGRATS YOU ACHIEVED A NEW HIGH SCORE OF  )
                 if (parseFloat(CompleteStageOneTime) < parseFloat(document.getElementById("stage-1-time").innerText)) {
                 document.getElementById("stage-1-time").innerText = CompleteStageOneTime;
+                document.getElementById("modal-title").innerText = `Congratulations`;
+                document.getElementById("modal-text").innerText = `You achieved a new best time of ${CompleteStageOneTime} seconds.`
+                $('#high-score-modal').modal('show');
+
                 }
         }
     }
 }
+
 
 var checkWinStageTwo = function(){
     if (stageTwoArray.length === boxesShot.length) {
@@ -82,9 +93,15 @@ var checkWinStageTwo = function(){
         stopTimer();
         if (parseFloat(document.getElementById("stage-2-time").innerText) === 0) {
             document.getElementById("stage-2-time").innerText = CompleteStageTwoTime;
+            document.getElementById("modal-title").innerText = `Stage 2 Complete`;
+            document.getElementById("modal-text").innerText = `Your best time is ${CompleteStageTwoTime} seconds.`
+            $('#high-score-modal').modal('show');
         } else {
                 if (parseFloat(CompleteStageTwoTime) < parseFloat(document.getElementById("stage-2-time").innerText)) {
                 document.getElementById("stage-2-time").innerText = CompleteStageTwoTime;
+                document.getElementById("modal-title").innerText = `Congratulations`;
+                document.getElementById("modal-text").innerText = `You achieved a new best time of ${CompleteStageTwoTime} seconds.`
+                $('#high-score-modal').modal('show');
                 }
         }
     }
@@ -95,9 +112,15 @@ var checkWinStageThree = function(){
         stopTimer();
         if (parseFloat(document.getElementById("stage-3-time").innerText) === 0) {
             document.getElementById("stage-3-time").innerText = CompleteStageThreeTime;
+            document.getElementById("modal-title").innerText = `Stage 3 Complete`;
+            document.getElementById("modal-text").innerText = `Your best time is ${CompleteStageThreeTime} seconds.`
+            $('#high-score-modal').modal('show');
         } else {
                 if (parseFloat(CompleteStageThreeTime) < parseFloat(document.getElementById("stage-3-time").innerText)) {
                 document.getElementById("stage-3-time").innerText = CompleteStageThreeTime;
+                document.getElementById("modal-title").innerText = `Congratulations`;
+                document.getElementById("modal-text").innerText = `You achieved a new best time of ${CompleteStageThreeTime} seconds.`
+                $('#high-score-modal').modal('show');
                 }
         }
     }
@@ -108,9 +131,15 @@ var checkWinStageFour = function(){
         stopTimer();
         if (parseFloat(document.getElementById("stage-4-time").innerText) === 0) {
             document.getElementById("stage-4-time").innerText = CompleteStageFourTime;
+            document.getElementById("modal-title").innerText = `Stage 4 Complete`;
+            document.getElementById("modal-text").innerText = `Your best time is ${CompleteStageFourTime} seconds.`
+            $('#high-score-modal').modal('show');
         } else {
                 if (parseFloat(CompleteStageFourTime) < parseFloat(document.getElementById("stage-4-time").innerText)) {
                 document.getElementById("stage-4-time").innerText = CompleteStageFourTime;
+                document.getElementById("modal-title").innerText = `Congratulations`;
+                document.getElementById("modal-text").innerText = `You achieved a new best time of ${CompleteStageFourTime} seconds.`
+                $('#high-score-modal').modal('show');
                 }
         }
     }
@@ -209,6 +238,7 @@ var runTimer4= function(){
 ///////////////////       STAGE ONE        ///////////////////////////
 
 var stageOneStart = function() {
+
     //clear timers and board and reset arrays
     readyGame();
     // clearBoard();
@@ -427,8 +457,8 @@ var stageFourStart = function() {
     //create gameboard with 4 numbers in order in moving divs
     for (i = 0; i < stageFourArray.length; i++) {
         var shootBox = document.createElement("div");
-        shootBox.setAttribute("id", stageFourArray[i]);
-        shootBox.setAttribute("class","content");
+        shootBox.setAttribute("id", "s4"+stageFourArray[i]);
+        shootBox.setAttribute("class","shotBox");
         shootBox.setAttribute("style","box-sizing: border-box; height: 25%; width: 25%; border-radius: 15px; padding: 25px 0;");
         shootBox.style.backgroundColor = createRandomColor();
         shootBox.innerText = stageFourArray[i];
@@ -443,7 +473,7 @@ var stageFourStart = function() {
         bangSound.play();
 
         //box disappears if shot in order
-        if (parseInt(event.target.id) === boxesShot.length+1) {
+        if (parseInt(event.target.innerText) === boxesShot.length+1) {
             event.target.style.visibility = "hidden";
             boxesShot.push(event.target.id)
             console.log(boxesShot);
@@ -454,16 +484,16 @@ var stageFourStart = function() {
             wrongBang.src = "assets/css/sounds/Buzz.mp3"
             wrongBang.play();
             for ( i=0; i < stageFourArray.length; i++) {
-                    var box = document.querySelectorAll(".content")[i];
+                    var box = document.querySelectorAll(".shotBox")[i];
                     box.style.backgroundColor = "black";
                     box.style.color = "grey";
                     box.removeEventListener('click', fireOnBox);
 
                     var returnToNormal = setTimeout(function(box){
                         for ( i=0; i < stageFourArray.length; i++) {
-                            document.querySelectorAll(".content")[i].style.backgroundColor = createRandomColor();
-                            document.querySelectorAll(".content")[i].style.color = "white";
-                            document.querySelectorAll(".content")[i].addEventListener('click',fireOnBox);
+                            document.querySelectorAll(".shotBox")[i].style.backgroundColor = createRandomColor();
+                            document.querySelectorAll(".shotBox")[i].style.color = "white";
+                            document.querySelectorAll(".shotBox")[i].addEventListener('click',fireOnBox);
                         }
                     }, 2000);
             }
@@ -471,7 +501,7 @@ var stageFourStart = function() {
     }
 
     for (i = 0; i < stageFourArray.length; i++) {
-        var selectBox = document.querySelectorAll(".content");
+        var selectBox = document.querySelectorAll(".shotBox");
         selectBox[i].addEventListener('click',fireOnBox);
     }
 }
@@ -576,28 +606,6 @@ var stageFourStart = function() {
 //     }
 // }
 
-// var checkWinStageThree = function(){
-//     if (stageThreeArray.length === boxesShot.length) {
-//         stopTimer();
-//         if (parseFloat(document.getElementById("stage-3-time").innerText) === 0) {
-//             document.getElementById("stage-3-time").innerText = CompleteStageThreeTime;
-//         } else {
-//                 if (parseFloat(CompleteStageThreeTime) < parseFloat(document.getElementById("stage-3-time").innerText)) {
-//                 document.getElementById("stage-3-time").innerText = CompleteStageThreeTime;
-//                 }
-//         }
-//     }
-// }
-
-// var checkWinStageFour = function(){
-//     if (stageFourArray.length === boxesShot.length) {
-//         // console.log("counter is: "+counter);
-//         // var timing = (counter/100).toFixed(2)
-//         // alert(`Your timing is ${CompleteStageFourTime} seconds`);
-//         stopTimer();
-//         document.getElementById("stage-4-time").innerText = CompleteStageFourTime;
-//     }
-// }
 
 
 
