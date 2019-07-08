@@ -127,7 +127,7 @@ var checkWinStageThree = function(){
 }
 
 var checkWinStageFour = function(){
-    if (stageFourArray.length === boxesShot.length) {
+    if (stageFourArray.length+boxesShot.length === boxesShot.length) {
         stopTimer();
         if (parseFloat(document.getElementById("stage-4-time").innerText) === 0) {
             document.getElementById("stage-4-time").innerText = CompleteStageFourTime;
@@ -236,6 +236,8 @@ var runTimer4= function(){
 
 ///////////////////////////////////////////////////////////////////////
 ///////////////////       STAGE ONE        ///////////////////////////
+/////////     16 Squares - No penalty upon miss shot        /////////
+//////////////////////////////////////////////////////////////////////
 
 var stageOneStart = function() {
 
@@ -290,6 +292,8 @@ var stageOneStart = function() {
 
 ///////////////////////////////////////////////////////////////////////
 ///////////////////       STAGE TWO        ///////////////////////////
+///    16 Squares - Penalty -> Boxes turn black upon miss shot    ////
+//////////////////////////////////////////////////////////////////////
 
 var stageTwoStart = function() {
     //add background in-game music
@@ -360,7 +364,9 @@ var stageTwoStart = function() {
 
 
 ///////////////////////////////////////////////////////////////////////
-///////////////////       STAGE THREE        ///////////////////////////
+///////////////////       STAGE THREE        //////////////////////////
+// 25 Squares - Penalty -> Boxes and text turn black upon miss shot //
+//////////////////////////////////////////////////////////////////////
 
 var stageThreeStart = function() {
 
@@ -419,9 +425,10 @@ var stageThreeStart = function() {
 
                     var returnToNormal = setTimeout(function(box){
                         for ( i=0; i < stageThreeArray.length; i++) {
-                            document.querySelectorAll(".shotBox")[i].style.backgroundColor = createRandomColor();
-                            document.querySelectorAll(".shotBox")[i].style.color = "white"
-                            document.querySelectorAll(".shotBox")[i].addEventListener('click',fireOnBox);
+                                    document.querySelectorAll(".shotBox")[i].style.backgroundColor = createRandomColor();
+                                    document.querySelectorAll(".shotBox")[i].style.color = "white"
+                                    document.querySelectorAll(".shotBox")[i].addEventListener('click',fireOnBox);
+
                         }
                     }, 2000);
             }
@@ -475,25 +482,44 @@ var stageFourStart = function() {
         //box disappears if shot in order
         if (parseInt(event.target.innerText) === boxesShot.length+1) {
             event.target.style.visibility = "hidden";
-            boxesShot.push(event.target.id)
+            boxesShot.push(event.target.id);
             console.log(boxesShot);
+            stageFourArray.shift();
+            // stageFourArray.splice(parseInt(event.target.innerText)-1,1);
+            console.log(stageFourArray);
             checkWinStageFour();
         } else {
             // box turns black but number still visible and click disabled for 2 seconds
             var wrongBang = new Audio();
             wrongBang.src = "assets/css/sounds/Buzz.mp3"
             wrongBang.play();
-            for ( i=0; i < stageFourArray.length; i++) {
+            // for ( i=0; i < stageFourArray.length; i++) {
+            for (i=0; i<document.querySelectorAll(".shotBox").length;i++) {
+                for (j=0; j<stageFourArray.length;j++) {
+                    if (parseInt(document.querySelectorAll(".shotBox")[i].innerHTML) === stageFourArray[j]) {
+                    console.log(stageFourArray);
+                    console.log("stage 4 array length is" +stageFourArray.length);
                     var box = document.querySelectorAll(".shotBox")[i];
-                    box.style.backgroundColor = "black";
-                    box.style.color = "grey";
+                    // box.style.backgroundColor = "black";
+                    // box.style.color = "black";
+                    box.style.visibility = "hidden"
                     box.removeEventListener('click', fireOnBox);
 
+                    }
+                }
+
                     var returnToNormal = setTimeout(function(box){
-                        for ( i=0; i < stageFourArray.length; i++) {
-                            document.querySelectorAll(".shotBox")[i].style.backgroundColor = createRandomColor();
-                            document.querySelectorAll(".shotBox")[i].style.color = "white";
-                            document.querySelectorAll(".shotBox")[i].addEventListener('click',fireOnBox);
+                        // for ( i=stageFourArray.length-1; i >= 0; i--) {
+                        for (i=0; i<document.querySelectorAll(".shotBox").length;i++) {
+                            for (j=0; j<stageFourArray.length;j++) {
+                                console.log("shotbox array length is " +document.querySelectorAll(".shotBox").length)
+                                if (parseInt(document.querySelectorAll(".shotBox")[i].innerHTML) === stageFourArray[j]) {
+                                document.querySelectorAll(".shotBox")[i].style.visibility = "visible";
+                                document.querySelectorAll(".shotBox")[i].style.backgroundColor = createRandomColor();
+                                document.querySelectorAll(".shotBox")[i].style.color = "white";
+                                document.querySelectorAll(".shotBox")[i].addEventListener('click',fireOnBox);
+                                }
+                            }
                         }
                     }, 2000);
             }
