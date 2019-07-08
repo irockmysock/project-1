@@ -5,12 +5,18 @@ var stageOneArray = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
 var stageTwoArray = [];
 var stageThreeArray = [];
 var stageFourArray = [];
-var boxesShot = [];
-var counter = 0;
+var stageFiveArray = [];
+var stageSixArray = [];
 var CompleteStageOneTime = null;
 var CompleteStageTwoTime = null;
 var CompleteStageThreeTime = null;
 var CompleteStageFourTime = null;
+var CompleteStageFiveTime = null;
+var CompleteStageSixTime = null;
+var currentStage = null;
+var boxesShot = [];
+var counter = 0;
+
 
 
 
@@ -57,6 +63,7 @@ var readyGame = function() {
     stopTimer();
     clearTimer();
     displayTimer();
+    runTimer();
 }
 
 var checkWinStageOne = function(){
@@ -66,17 +73,15 @@ var checkWinStageOne = function(){
         // alert(`Your timing is ${CompleteStageOneTime} seconds`);
         stopTimer();
         if (parseFloat(document.getElementById("stage-1-time").innerText) === 0) {
-            //ADD OVERLAY (STAGE 1 COMPLETE. YOUR TIME IS )
             document.getElementById("stage-1-time").innerText = CompleteStageOneTime;
             document.getElementById("modal-title").innerText = `Stage 1 Complete`;
             document.getElementById("modal-text").innerText = `Your best time is ${CompleteStageOneTime} seconds.`
             $('#high-score-modal').modal('show');
         } else {
-                //ADD OVERLAY (CONGRATS YOU ACHIEVED A NEW HIGH SCORE OF  )
-                if (parseFloat(CompleteStageOneTime) < parseFloat(document.getElementById("stage-1-time").innerText)) {
+            if (parseFloat(CompleteStageOneTime) < parseFloat(document.getElementById("stage-1-time").innerText)) {
                 document.getElementById("stage-1-time").innerText = CompleteStageOneTime;
                 document.getElementById("modal-title").innerText = `Congratulations`;
-                document.getElementById("modal-text").innerText = `You achieved a new best time of ${CompleteStageOneTime} seconds.`
+                document.getElementById("modal-text").innerText = `You achieved a new best time of ${CompleteStageOneTime} seconds.`;
                 $('#high-score-modal').modal('show');
 
                 }
@@ -100,7 +105,7 @@ var checkWinStageTwo = function(){
                 if (parseFloat(CompleteStageTwoTime) < parseFloat(document.getElementById("stage-2-time").innerText)) {
                 document.getElementById("stage-2-time").innerText = CompleteStageTwoTime;
                 document.getElementById("modal-title").innerText = `Congratulations`;
-                document.getElementById("modal-text").innerText = `You achieved a new best time of ${CompleteStageTwoTime} seconds.`
+                document.getElementById("modal-text").innerText = `You achieved a new best time of ${CompleteStageTwoTime} seconds.`;
                 $('#high-score-modal').modal('show');
                 }
         }
@@ -119,7 +124,7 @@ var checkWinStageThree = function(){
                 if (parseFloat(CompleteStageThreeTime) < parseFloat(document.getElementById("stage-3-time").innerText)) {
                 document.getElementById("stage-3-time").innerText = CompleteStageThreeTime;
                 document.getElementById("modal-title").innerText = `Congratulations`;
-                document.getElementById("modal-text").innerText = `You achieved a new best time of ${CompleteStageThreeTime} seconds.`
+                document.getElementById("modal-text").innerText = `You achieved a new best time of ${CompleteStageThreeTime} seconds.`;
                 $('#high-score-modal').modal('show');
                 }
         }
@@ -138,12 +143,33 @@ var checkWinStageFour = function(){
                 if (parseFloat(CompleteStageFourTime) < parseFloat(document.getElementById("stage-4-time").innerText)) {
                 document.getElementById("stage-4-time").innerText = CompleteStageFourTime;
                 document.getElementById("modal-title").innerText = `Congratulations`;
-                document.getElementById("modal-text").innerText = `You achieved a new best time of ${CompleteStageFourTime} seconds.`
+                document.getElementById("modal-text").innerText = `You achieved a new best time of ${CompleteStageFourTime} seconds.`;
                 $('#high-score-modal').modal('show');
                 }
         }
     }
 }
+
+
+var checkWinStageFive = function(){
+    if (stageFiveArray.length+boxesShot.length === boxesShot.length) {
+        stopTimer();
+        if (parseFloat(document.getElementById("stage-5-time").innerText) === 0) {
+            document.getElementById("stage-5-time").innerText = CompleteStageFiveTime;
+            document.getElementById("modal-title").innerText = `Stage 5 Complete`;
+            document.getElementById("modal-text").innerText = `Your best time is ${CompleteStageFiveTime} seconds.`
+            $('#high-score-modal').modal('show');
+        } else {
+                if (parseFloat(CompleteStageFiveTime) < parseFloat(document.getElementById("stage-5-time").innerText)) {
+                document.getElementById("stage-5-time").innerText = CompleteStageFourTime;
+                document.getElementById("modal-title").innerText = `Congratulations`;
+                document.getElementById("modal-text").innerText = `You achieved a new best time of ${CompleteStageFiveTime} seconds.`;
+                $('#high-score-modal').modal('show');
+                }
+        }
+    }
+}
+
 
 
 /////////////////////
@@ -169,56 +195,98 @@ var clearTimer = function (time) {
     output.innerText = null;
 }
 
-//Stage 1 timer to log stage completion timing
-var runTimer1= function(){
 
+var runTimer= function(){
     //start timer
     startTimer = setInterval(function(){
         counter++;
         var timing = (counter/100).toFixed(2);
-        CompleteStageOneTime = timing
-        // console.log(counter);
+        switch (currentStage) {
+          case '1':
+            CompleteStageOneTime = timing;
+            break;
+          case '2':
+            CompleteStageTwoTime = timing;
+            break;
+          case '3':
+            CompleteStageThreeTime = timing;
+            break;
+          case '4':
+            CompleteStageFourTime = timing;
+            break;
+          case '5':
+            CompleteStageFiveTime = timing;
+            break;
+        }
         displayTimer(`${timing} seconds`);
     }, 10);
 }
 
-//Stage 2 timer to log stage completion timing
-var runTimer2 = function(){
-    //start timer
-    startTimer = setInterval(function(){
-        counter++;
-        var timing = (counter/100).toFixed(2);
-        CompleteStageTwoTime = timing
-        // console.log(counter);
-        displayTimer(`${timing} seconds`);
-    }, 10);
-}
 
-//Stage 3 timer to log stage completion timing
-var runTimer3= function(){
 
-    //start timer
-    startTimer = setInterval(function(){
-        counter++;
-        var timing = (counter/100).toFixed(2);
-        CompleteStageThreeTime = timing
-        // console.log(counter);
-        displayTimer(`${timing} seconds`);
-    }, 10);
-}
+// //Stage 1 timer to log stage completion timing
+// var runTimer1= function(){
 
-//Stage 4 timer to log stage completion timing
-var runTimer4= function(){
+//     //start timer
+//     startTimer = setInterval(function(){
+//         counter++;
+//         var timing = (counter/100).toFixed(2);
+//         CompleteStageOneTime = timing
+//         // console.log(counter);
+//         displayTimer(`${timing} seconds`);
+//     }, 10);
+// }
 
-    //start timer
-    startTimer = setInterval(function(){
-        counter++;
-        var timing = (counter/100).toFixed(2);
-        CompleteStageFourTime = timing
-        // console.log(counter);
-        displayTimer(`${timing} seconds`);
-    }, 10);
-}
+// //Stage 2 timer to log stage completion timing
+// var runTimer2 = function(){
+//     //start timer
+//     startTimer = setInterval(function(){
+//         counter++;
+//         var timing = (counter/100).toFixed(2);
+//         CompleteStageTwoTime = timing
+//         // console.log(counter);
+//         displayTimer(`${timing} seconds`);
+//     }, 10);
+// }
+
+// //Stage 3 timer to log stage completion timing
+// var runTimer3= function(){
+
+//     //start timer
+//     startTimer = setInterval(function(){
+//         counter++;
+//         var timing = (counter/100).toFixed(2);
+//         CompleteStageThreeTime = timing
+//         // console.log(counter);
+//         displayTimer(`${timing} seconds`);
+//     }, 10);
+// }
+
+// //Stage 4 timer to log stage completion timing
+// var runTimer4= function(){
+
+//     //start timer
+//     startTimer = setInterval(function(){
+//         counter++;
+//         var timing = (counter/100).toFixed(2);
+//         CompleteStageFourTime = timing
+//         // console.log(counter);
+//         displayTimer(`${timing} seconds`);
+//     }, 10);
+// }
+
+// //Stage 5 timer to log stage completion timing
+// var runTimer5= function(){
+
+//     //start timer
+//     startTimer = setInterval(function(){
+//         counter++;
+//         var timing = (counter/100).toFixed(2);
+//         CompleteStageFiveTime = timing
+//         // console.log(counter);
+//         displayTimer(`${timing} seconds`);
+//     }, 10);
+// }
 
 /////////////////////
 ///  GAME SOUNDS ///
@@ -240,13 +308,13 @@ var runTimer4= function(){
 //////////////////////////////////////////////////////////////////////
 
 var stageOneStart = function() {
-
+    currentStage = "1";
     //clear timers and board and reset arrays
     readyGame();
     // clearBoard();
     // clearTimer();
     // displayTimer();
-    runTimer1();
+    // runTimer();
     stageOneArray = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
     console.log(stageOneArray);
 
@@ -261,7 +329,7 @@ var stageOneStart = function() {
         var shootBox = document.createElement("div");
         shootBox.setAttribute("id", stageOneArray[i]);
         shootBox.setAttribute("class","shotBox");
-        shootBox.setAttribute("style","box-sizing: border-box; display: inline-block; height: 25%; width: 25%; border-radius: 15px; padding: 25px 0;");
+        shootBox.setAttribute("style","box-sizing: border-box; display: inline-block; height: 25%; width: 25%; border-radius: 25px; padding: 25px 0;");
         shootBox.style.backgroundColor = createRandomColor();
         shootBox.innerText = stageOneArray[i]
         var gameBoard = document.querySelector(".game-board");
@@ -296,6 +364,7 @@ var stageOneStart = function() {
 //////////////////////////////////////////////////////////////////////
 
 var stageTwoStart = function() {
+    currentStage = "2";
     //add background in-game music
     var backgroundSound = new Audio();
     backgroundSound.src = "assets/css/sounds/Surreal-Chase_Looping.mp3"
@@ -303,7 +372,7 @@ var stageTwoStart = function() {
 
     //clear timers and board and reset arrays/
     readyGame();
-    runTimer2();
+    // runTimer2();
     stageTwoArray = [];
     shuffleArray(stageOneArray);
     for (i=0;i<stageOneArray.length;i++) {
@@ -316,7 +385,7 @@ var stageTwoStart = function() {
         var shootBox = document.createElement("div");
         shootBox.setAttribute("id", stageTwoArray[i]);
         shootBox.setAttribute("class","shotBox");
-        shootBox.setAttribute("style","box-sizing: border-box; display: inline-block; height: 25%; width: 25%; border-radius: 15px; opacity: 1; padding: 25px 0;");
+        shootBox.setAttribute("style","box-sizing: border-box; display: inline-block; height: 25%; width: 25%; border-radius: 25px; opacity: 1; padding: 25px 0;");
         shootBox.style.backgroundColor = createRandomColor();
         shootBox.innerText = stageTwoArray[i]
         var gameBoard = document.querySelector(".game-board");
@@ -326,18 +395,18 @@ var stageTwoStart = function() {
     var fireOnBox   = function() {
         var bangSound = new Audio();
         bangSound.src = "assets/css/sounds/gunshot.mp3"
-        bangSound.play();
+        var wrongBang = new Audio();
+        wrongBang.src = "assets/css/sounds/Buzz.mp3"
 
         //box disappears if shot in order
         if (parseInt(event.target.id) === boxesShot.length+1) {
+            bangSound.play();
             event.target.style.visibility = "hidden";
             boxesShot.push(event.target.id)
             console.log(boxesShot);
             checkWinStageTwo();
         } else {
             // box turns black but number still visible and click disabled for 2 seconds
-            var wrongBang = new Audio();
-            wrongBang.src = "assets/css/sounds/Buzz.mp3"
             wrongBang.play();
             for ( i=0; i < stageTwoArray.length; i++) {
                     var box = document.querySelectorAll(".shotBox")[i];
@@ -369,10 +438,10 @@ var stageTwoStart = function() {
 //////////////////////////////////////////////////////////////////////
 
 var stageThreeStart = function() {
-
+    currentStage = "3";
     //clear timers and board and reset arrays
     readyGame();
-    runTimer3();
+    // runTimer3();
     stageThreeArray = [];
     for (i = 1; i < 26; i++) {
         stageThreeArray.push(i);
@@ -394,7 +463,7 @@ var stageThreeStart = function() {
         var shootBox = document.createElement("div");
         shootBox.setAttribute("id", stageThreeArray[i]);
         shootBox.setAttribute("class","shotBox");
-        shootBox.setAttribute("style","box-sizing: border-box; display: inline-block; height: 20%; width: 20%; border-radius: 15px; padding: 20px 0;");
+        shootBox.setAttribute("style","box-sizing: border-box; display: inline-block; height: 20%; width: 20%; border-radius: 20px; padding: 25px 0; font-size: 38px;");
         shootBox.style.backgroundColor = createRandomColor();
         shootBox.innerText = stageThreeArray[i]
         var gameBoard = document.querySelector(".game-board");
@@ -405,17 +474,18 @@ var stageThreeStart = function() {
         //add gunshot sound to click
         var bangSound = new Audio();
         bangSound.src = "assets/css/sounds/gunshot.mp3"
-        bangSound.play();
+        var wrongBang = new Audio();
+        wrongBang.src = "assets/css/sounds/Buzz.mp3"
+
         //box disappears if shot in order
         if (parseInt(event.target.id) === boxesShot.length+1) {
+            bangSound.play();
             event.target.style.visibility = "hidden";
             boxesShot.push(event.target.id)
             console.log(boxesShot);
             checkWinStageThree();
         } else {
             // box turns black and click disabled for 2 seconds
-            var wrongBang = new Audio();
-            wrongBang.src = "assets/css/sounds/Buzz.mp3"
             wrongBang.play();
             for ( i=0; i < stageThreeArray.length; i++) {
                     var box = document.querySelectorAll(".shotBox")[i];
@@ -428,7 +498,6 @@ var stageThreeStart = function() {
                                     document.querySelectorAll(".shotBox")[i].style.backgroundColor = createRandomColor();
                                     document.querySelectorAll(".shotBox")[i].style.color = "white"
                                     document.querySelectorAll(".shotBox")[i].addEventListener('click',fireOnBox);
-
                         }
                     }, 2000);
             }
@@ -444,8 +513,11 @@ var stageThreeStart = function() {
 
 ///////////////////////////////////////////////////////////////////////
 ///////////////////       STAGE FOUR        ///////////////////////////
+///  4 Moving Squares - Penalty -> Boxes disappear upon miss shot  ////
+///////////////////////////////////////////////////////////////////////
 
 var stageFourStart = function() {
+    currentStage = "4";
     //add background in-game music
     var backgroundSound = new Audio();
     backgroundSound.src = "assets/css/sounds/Surreal-Chase_Looping.mp3"
@@ -453,9 +525,8 @@ var stageFourStart = function() {
 
     //clear timers and board and reset arrays/
     readyGame();
-    runTimer4();
+    // runTimer();
     stageFourArray = [];
-    // shuffleArray(stageOneArray);
     for (i = 1; i < 5; i++) {
         stageFourArray.push(i);
     }
@@ -476,11 +547,13 @@ var stageFourStart = function() {
 
     var fireOnBox   = function() {
         var bangSound = new Audio();
-        bangSound.src = "assets/css/sounds/gunshot.mp3"
-        bangSound.play();
+        bangSound.src = "assets/css/sounds/gunshot.mp3";
+        var wrongBang = new Audio();
+        wrongBang.src = "assets/css/sounds/Buzz.mp3";
 
         //box disappears if shot in order
         if (parseInt(event.target.innerText) === boxesShot.length+1) {
+            bangSound.play();
             event.target.style.visibility = "hidden";
             boxesShot.push(event.target.id);
             console.log(boxesShot);
@@ -489,9 +562,7 @@ var stageFourStart = function() {
             console.log(stageFourArray);
             checkWinStageFour();
         } else {
-            // box turns black but number still visible and click disabled for 2 seconds
-            var wrongBang = new Audio();
-            wrongBang.src = "assets/css/sounds/Buzz.mp3"
+            // remaining box disappear and click disabled for 2 seconds
             wrongBang.play();
             // for ( i=0; i < stageFourArray.length; i++) {
             for (i=0; i<document.querySelectorAll(".shotBox").length;i++) {
@@ -531,6 +602,105 @@ var stageFourStart = function() {
         selectBox[i].addEventListener('click',fireOnBox);
     }
 }
+
+
+///////////////////////////////////////////////////////////////////////
+///////////////////       STAGE FIVE        ///////////////////////////
+///  8 Moving Squares - Penalty -> Boxes disappear upon miss shot  ////
+///////////////////////////////////////////////////////////////////////
+
+var stageFiveStart = function() {
+    currentStage = "5";
+    //add background in-game music
+    var backgroundSound = new Audio();
+    backgroundSound.src = "assets/css/sounds/Surreal-Chase_Looping.mp3"
+    // backgroundSound.play();
+
+    //clear timers and board and reset arrays/
+    readyGame();
+    // runTimer5();
+    stageFiveArray = [];
+    for (i = 1; i < 9; i++) {
+        stageFiveArray.push(i);
+    }
+    console.log(stageFiveArray);
+    shuffleArray(stageFiveArray);
+    console.log("S5 after shuffle:"+stageFiveArray);
+
+    //create gameboard with 4 numbers in order in moving divs
+    for (i = 0; i < stageFiveArray.length; i++) {
+        var shootBox = document.createElement("div");
+        shootBox.setAttribute("id", "s5"+stageFiveArray[i]);
+        shootBox.setAttribute("class","shotBox");
+        shootBox.setAttribute("style","box-sizing: border-box; height: 12.5%; width: 12.5%; border-radius: 15px; padding: 15px 0; font-size: 26px;");
+        shootBox.style.backgroundColor = createRandomColor();
+        shootBox.innerText = stageFiveArray[i];
+        var gameBoard = document.querySelector(".game-board");
+        // document.querySelector(".game-board").style.display = "block";
+        gameBoard.appendChild(shootBox);
+    }
+
+    var fireOnBox   = function() {
+        var bangSound = new Audio();
+        bangSound.src = "assets/css/sounds/gunshot.mp3";
+        var wrongBang = new Audio();
+        wrongBang.src = "assets/css/sounds/Buzz.mp3";
+
+        //box disappears if shot in order
+        if (parseInt(event.target.innerText) === boxesShot.length+1) {
+            bangSound.play();
+            event.target.style.visibility = "hidden";
+            boxesShot.push(event.target.id);
+            console.log("boxes shot: " + boxesShot);
+            for (i=0;i<stageFiveArray.length;i++) {
+                if (stageFiveArray[i] === parseInt(event.target.innerHTML)) {
+                    stageFiveArray.splice(i,1);
+                }
+            }
+            console.log("stage5array: " + stageFiveArray);
+            checkWinStageFive();
+        } else {
+           // remaining box disappear and click disabled for 2 seconds
+            wrongBang.play();
+
+            var box = document.querySelectorAll(".shotBox");
+            for (i=0; i<box.length;i++) {
+                for (j=0; j<stageFiveArray.length;j++) {
+                    if (parseInt(box[i].innerHTML) === stageFiveArray[j]) {
+                    console.log(stageFiveArray);
+                    console.log("number hidden is: " + stageFiveArray[j]);
+                    console.log("stage 5 array length is" +stageFiveArray.length);
+                    box[i].style.visibility = "hidden";
+                    box[i].removeEventListener('click',fireOnBox);
+                    };
+                };
+            };
+            var returnToNormal = setTimeout(revealAll, 2000);
+        }
+    }
+
+    function revealAll () {
+        var box = document.querySelectorAll(".shotBox");
+        // loop thru everything again
+        for (i=0; i<box.length;i++) {
+            for (j=0; j<stageFiveArray.length;j++) {
+                if (parseInt(box[i].innerHTML) === stageFiveArray[j]) {
+                    box[i].style.visibility = "visible";
+                    box[i].style.backgroundColor = createRandomColor();
+                    box[i].style.color = "white";
+                    box[i].addEventListener('click',fireOnBox);
+                }
+            }
+        }
+    };
+
+    for (i = 0; i < stageFiveArray.length; i++) {
+        var selectBox = document.querySelectorAll(".shotBox");
+        selectBox[i].addEventListener('click',fireOnBox);
+    }
+}
+
+
 
 
 
@@ -639,6 +809,7 @@ document.querySelector("#stage1").addEventListener('click',stageOneStart);
 document.querySelector("#stage2").addEventListener('click',stageTwoStart);
 document.querySelector("#stage3").addEventListener('click',stageThreeStart);
 document.querySelector("#stage4").addEventListener('click',stageFourStart);
+document.querySelector("#stage5").addEventListener('click',stageFiveStart);
 
 // document.addEventListener("DOMContentLoaded", function(event) {
 
