@@ -17,9 +17,6 @@ var currentStage = null;
 var boxesShot = [];
 var counter = 0;
 
-
-
-
 ////////////////////
 // GAME FUNCTIONS //
 ///////////////////
@@ -43,6 +40,13 @@ var setRandomColor = function() {
     document.body.style.backgroundColor = createRandomColor();
 }
 
+//animate cursor upon shot
+var bangAnimate = function() {
+    document.querySelector(".game-border").style.cursor = "url('assets/css/images/ammunition.png'), auto";
+    var cursor = setTimeout(function(){
+        document.querySelector(".game-border").style.cursor = "url('assets/css/images/gun-pointer32px.png'), auto";
+    }, 150);
+};
 // var fireOnBox   = function() {
 //         var bangSound = new Audio();
 //         bangSound.src = "assets/css/sounds/gunshot.mp3"
@@ -299,6 +303,9 @@ var runTimer= function(){
 // var wrongBang = new Audio();
 // wrongBang.src = "assets/css/sounds/Buzz.mp3"
 
+var backgroundSound = new Audio();
+backgroundSound.src = "assets/css/sounds/Surreal-Chase_Looping.mp3";
+
 /////////////////////////////////////////////////////
 ////////////////////////////////////////////////////
 
@@ -311,18 +318,12 @@ var stageOneStart = function() {
     currentStage = "1";
     //clear timers and board and reset arrays
     readyGame();
-    // clearBoard();
-    // clearTimer();
-    // displayTimer();
-    // runTimer();
     stageOneArray = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
     console.log(stageOneArray);
 
-
     //add background in-game music
-    var backgroundSound = new Audio();
-    backgroundSound.src = "assets/css/sounds/Surreal-Chase_Looping.mp3"
-    // backgroundSound.play();
+    backgroundSound.loop=true;
+    backgroundSound.play();
 
     //create gameboard based on boardsize with random numbers
     for (i = 0; i < stageOneArray.length; i++) {
@@ -338,10 +339,11 @@ var stageOneStart = function() {
 
     //  click function in game
     var fireOnBox   = function() {
-        // //add gunshot sound to click
+        //sounds and animation
         var bangSound = new Audio();
         bangSound.src = "assets/css/sounds/gunshot.mp3"
         bangSound.play();
+        bangAnimate();
         //box disappears if shot in order
         if (parseInt(event.target.id) === boxesShot.length+1) {
             event.target.style.visibility = "hidden";
@@ -365,9 +367,6 @@ var stageOneStart = function() {
 
 var stageTwoStart = function() {
     currentStage = "2";
-    //add background in-game music
-    var backgroundSound = new Audio();
-    backgroundSound.src = "assets/css/sounds/Surreal-Chase_Looping.mp3"
     // backgroundSound.play();
 
     //clear timers and board and reset arrays/
@@ -393,11 +392,12 @@ var stageTwoStart = function() {
     }
 
     var fireOnBox   = function() {
+        //sounds and animation
         var bangSound = new Audio();
         bangSound.src = "assets/css/sounds/gunshot.mp3"
         var wrongBang = new Audio();
         wrongBang.src = "assets/css/sounds/Buzz.mp3"
-
+        bangAnimate();
         //box disappears if shot in order
         if (parseInt(event.target.id) === boxesShot.length+1) {
             bangSound.play();
@@ -440,8 +440,9 @@ var stageTwoStart = function() {
 var stageThreeStart = function() {
     currentStage = "3";
     //clear timers and board and reset arrays
-    readyGame();
+    // backgroundSound.play();
     // runTimer3();
+    readyGame();
     stageThreeArray = [];
     for (i = 1; i < 26; i++) {
         stageThreeArray.push(i);
@@ -451,12 +452,7 @@ var stageThreeStart = function() {
 
     shuffleArray(stageThreeArray);
 
-    console.log(stageThreeArray);
-
-    //add background in-game music
-    var backgroundSound = new Audio();
-    backgroundSound.src = "assets/css/sounds/Surreal-Chase_Looping.mp3"
-    // backgroundSound.play();
+    // console.log(stageThreeArray);
 
     //create gameboard based on boardsize with random numbers
     for (i = 0; i < stageThreeArray.length; i++) {
@@ -471,12 +467,12 @@ var stageThreeStart = function() {
     }
 
     var fireOnBox   = function() {
-        //add gunshot sound to click
+        //sounds and animation
         var bangSound = new Audio();
         bangSound.src = "assets/css/sounds/gunshot.mp3"
         var wrongBang = new Audio();
         wrongBang.src = "assets/css/sounds/Buzz.mp3"
-
+        bangAnimate();
         //box disappears if shot in order
         if (parseInt(event.target.id) === boxesShot.length+1) {
             bangSound.play();
@@ -504,7 +500,7 @@ var stageThreeStart = function() {
         }
     }
 
-    //event listner for shot on box
+    //event listener for shot on box
     for (i = 0; i < stageThreeArray.length; i++) {
         var selectBox = document.querySelectorAll(".shotBox");
         selectBox[i].addEventListener('click',fireOnBox);
@@ -518,14 +514,11 @@ var stageThreeStart = function() {
 
 var stageFourStart = function() {
     currentStage = "4";
-    //add background in-game music
-    var backgroundSound = new Audio();
-    backgroundSound.src = "assets/css/sounds/Surreal-Chase_Looping.mp3"
     // backgroundSound.play();
 
     //clear timers and board and reset arrays/
-    readyGame();
     // runTimer();
+    readyGame();
     stageFourArray = [];
     for (i = 1; i < 5; i++) {
         stageFourArray.push(i);
@@ -546,10 +539,12 @@ var stageFourStart = function() {
     }
 
     var fireOnBox   = function() {
+        //sounds and animation
         var bangSound = new Audio();
         bangSound.src = "assets/css/sounds/gunshot.mp3";
         var wrongBang = new Audio();
         wrongBang.src = "assets/css/sounds/Buzz.mp3";
+        bangAnimate();
 
         //box disappears if shot in order
         if (parseInt(event.target.innerText) === boxesShot.length+1) {
@@ -611,14 +606,11 @@ var stageFourStart = function() {
 
 var stageFiveStart = function() {
     currentStage = "5";
-    //add background in-game music
-    var backgroundSound = new Audio();
-    backgroundSound.src = "assets/css/sounds/Surreal-Chase_Looping.mp3"
     // backgroundSound.play();
 
     //clear timers and board and reset arrays/
-    readyGame();
     // runTimer5();
+    readyGame();
     stageFiveArray = [];
     for (i = 1; i < 9; i++) {
         stageFiveArray.push(i);
@@ -641,11 +633,12 @@ var stageFiveStart = function() {
     }
 
     var fireOnBox   = function() {
+        //sounds and animation
         var bangSound = new Audio();
         bangSound.src = "assets/css/sounds/gunshot.mp3";
         var wrongBang = new Audio();
         wrongBang.src = "assets/css/sounds/Buzz.mp3";
-
+        bangAnimate();
         //box disappears if shot in order
         if (parseInt(event.target.innerText) === boxesShot.length+1) {
             bangSound.play();

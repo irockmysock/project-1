@@ -107,3 +107,4 @@ Test your wits & knowledge with whatever-the-heck you know about (so you can act
  https://game-icons.net/1x1/delapouite/sawed-off-shotgun.html
  https://icons8.com/icons/set/crosshair
  http://soundbible.com/1204-Buzz.html
+ <div>Icons made by <a href="https://www.flaticon.com/authors/smalllikeart" title="smalllikeart">smalllikeart</a> from <a href="https://www.flaticon.com/"                 title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/"                 title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
