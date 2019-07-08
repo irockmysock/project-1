@@ -175,7 +175,6 @@ var checkWinStageFive = function(){
 }
 
 
-
 /////////////////////
 // TIMER FUNCTIONS //
 ////////////////////
@@ -199,7 +198,7 @@ var clearTimer = function (time) {
     output.innerText = null;
 }
 
-
+//run timer to log player score
 var runTimer= function(){
     //start timer
     startTimer = setInterval(function(){
@@ -226,71 +225,6 @@ var runTimer= function(){
     }, 10);
 }
 
-
-
-// //Stage 1 timer to log stage completion timing
-// var runTimer1= function(){
-
-//     //start timer
-//     startTimer = setInterval(function(){
-//         counter++;
-//         var timing = (counter/100).toFixed(2);
-//         CompleteStageOneTime = timing
-//         // console.log(counter);
-//         displayTimer(`${timing} seconds`);
-//     }, 10);
-// }
-
-// //Stage 2 timer to log stage completion timing
-// var runTimer2 = function(){
-//     //start timer
-//     startTimer = setInterval(function(){
-//         counter++;
-//         var timing = (counter/100).toFixed(2);
-//         CompleteStageTwoTime = timing
-//         // console.log(counter);
-//         displayTimer(`${timing} seconds`);
-//     }, 10);
-// }
-
-// //Stage 3 timer to log stage completion timing
-// var runTimer3= function(){
-
-//     //start timer
-//     startTimer = setInterval(function(){
-//         counter++;
-//         var timing = (counter/100).toFixed(2);
-//         CompleteStageThreeTime = timing
-//         // console.log(counter);
-//         displayTimer(`${timing} seconds`);
-//     }, 10);
-// }
-
-// //Stage 4 timer to log stage completion timing
-// var runTimer4= function(){
-
-//     //start timer
-//     startTimer = setInterval(function(){
-//         counter++;
-//         var timing = (counter/100).toFixed(2);
-//         CompleteStageFourTime = timing
-//         // console.log(counter);
-//         displayTimer(`${timing} seconds`);
-//     }, 10);
-// }
-
-// //Stage 5 timer to log stage completion timing
-// var runTimer5= function(){
-
-//     //start timer
-//     startTimer = setInterval(function(){
-//         counter++;
-//         var timing = (counter/100).toFixed(2);
-//         CompleteStageFiveTime = timing
-//         // console.log(counter);
-//         displayTimer(`${timing} seconds`);
-//     }, 10);
-// }
 
 /////////////////////
 ///  GAME SOUNDS ///
@@ -694,6 +628,24 @@ var stageFiveStart = function() {
 }
 
 
+document.querySelector("#stage1").addEventListener('click',stageOneStart);
+document.querySelector("#stage2").addEventListener('click',stageTwoStart);
+document.querySelector("#stage3").addEventListener('click',stageThreeStart);
+document.querySelector("#stage4").addEventListener('click',stageFourStart);
+document.querySelector("#stage5").addEventListener('click',stageFiveStart);
+
+// document.addEventListener("DOMContentLoaded", function(event) {
+
+//     // document.body.addEventListener('mousemove', setRandomBackgroundColor)
+
+// });
+
+///////////////////////////////////////////////////////////////////////////////
+////////////////////////////////END///////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+
+
 
 
 
@@ -761,8 +713,6 @@ var stageFiveStart = function() {
 
 
 
-
-
 // var checkWinStageOne = function(){
 //     if (stageOneArray.length === boxesShot.length) {
 //         // console.log("counter is: "+counter);
@@ -796,16 +746,66 @@ var stageFiveStart = function() {
 // }
 
 
+// //Stage 1 timer to log stage completion timing
+// var runTimer1= function(){
 
+//     //start timer
+//     startTimer = setInterval(function(){
+//         counter++;
+//         var timing = (counter/100).toFixed(2);
+//         CompleteStageOneTime = timing
+//         // console.log(counter);
+//         displayTimer(`${timing} seconds`);
+//     }, 10);
+// }
 
-document.querySelector("#stage1").addEventListener('click',stageOneStart);
-document.querySelector("#stage2").addEventListener('click',stageTwoStart);
-document.querySelector("#stage3").addEventListener('click',stageThreeStart);
-document.querySelector("#stage4").addEventListener('click',stageFourStart);
-document.querySelector("#stage5").addEventListener('click',stageFiveStart);
+// //Stage 2 timer to log stage completion timing
+// var runTimer2 = function(){
+//     //start timer
+//     startTimer = setInterval(function(){
+//         counter++;
+//         var timing = (counter/100).toFixed(2);
+//         CompleteStageTwoTime = timing
+//         // console.log(counter);
+//         displayTimer(`${timing} seconds`);
+//     }, 10);
+// }
 
-// document.addEventListener("DOMContentLoaded", function(event) {
+// //Stage 3 timer to log stage completion timing
+// var runTimer3= function(){
 
-//     // document.body.addEventListener('mousemove', setRandomBackgroundColor)
+//     //start timer
+//     startTimer = setInterval(function(){
+//         counter++;
+//         var timing = (counter/100).toFixed(2);
+//         CompleteStageThreeTime = timing
+//         // console.log(counter);
+//         displayTimer(`${timing} seconds`);
+//     }, 10);
+// }
 
-// });
+// //Stage 4 timer to log stage completion timing
+// var runTimer4= function(){
+
+//     //start timer
+//     startTimer = setInterval(function(){
+//         counter++;
+//         var timing = (counter/100).toFixed(2);
+//         CompleteStageFourTime = timing
+//         // console.log(counter);
+//         displayTimer(`${timing} seconds`);
+//     }, 10);
+// }
+
+// //Stage 5 timer to log stage completion timing
+// var runTimer5= function(){
+
+//     //start timer
+//     startTimer = setInterval(function(){
+//         counter++;
+//         var timing = (counter/100).toFixed(2);
+//         CompleteStageFiveTime = timing
+//         // console.log(counter);
+//         displayTimer(`${timing} seconds`);
+//     }, 10);
+// }
