@@ -124,6 +124,7 @@ body{
 	/*display: flex;*/
 	display: block;
 	flex-wrap: wrap;
+	position: relative;
 }
 
 
@@ -137,7 +138,7 @@ body{
 	font-family: 'Press Start 2P', cursive;
 	font-size: 18px;
 	text-align: center;
-	padding-top: 10px;
+	padding-top: 15px;
 }
 
 .timer-div {
@@ -199,7 +200,7 @@ p {
 
 .stage-buttons {
 	font-family: 'Press Start 2P', cursive;
-	font-size: 10px;
+	font-size: 14px;
 	padding: 3px 20px;
 	color:white;
 	background-color: rgba(0,0,0,0.7);
@@ -209,7 +210,7 @@ p {
 
 .stage-buttons:hover {
 	background-color: rgba(65,75,80,0.8);
-	font-size: 12px;
+	font-size: 15px;
 }
 
 #game-title {
@@ -272,19 +273,19 @@ h5 {
 
 /*stage 4 keyframes and id selectors*/
 #s41 {
-	animation: stage-4-1 5s linear infinite;
+	animation: stage-4-1 2s linear infinite;
 }
 
 #s42 {
-	animation: stage-4-2 5s linear infinite;
+	animation: stage-4-2 4s linear infinite;
 }
 
 #s43 {
-	animation: stage-4-3 5s linear infinite;
+	animation: stage-4-3 3s linear infinite;
 }
 
 #s44 {
-	animation: stage-4-4 5s linear infinite;
+	animation: stage-4-4 2s linear infinite;
 }
 
 @keyframes stage-4-1 {
@@ -292,7 +293,7 @@ h5 {
 		transform:translate(0);
 	}
 	50% {
-		transform:translate(75%);
+		transform:translate(200%);
 	}
 	100% {
 	transform:translate(0);
@@ -304,7 +305,7 @@ h5 {
 		transform:translate(0);
 	}
 	50% {
-		transform:translate(150%);
+		transform:translate(300%);
 	}
 	100% {
 	transform:translate(0);
@@ -317,7 +318,7 @@ h5 {
 		transform:translate(0);
 	}
 	50% {
-		transform:translate(225%);
+		transform:translate(300%);
 	}
 	100% {
 	transform:translate(0);
@@ -335,8 +336,6 @@ h5 {
 	transform:translate(0);
 	}
 }
-
-
 
 
 /*stage 5 keyframes and id selectors*/
@@ -403,30 +402,141 @@ h5 {
 	100% {
 	transform:translate(0);
 	}
-
-
-
-.test1 {
-	animation: stage-5-3 4s linear infinite;
-	position: absolute;
 }
 
-.test2 {
-	animation: stage-5-3 4s linear infinite;
+/*stage 6 keyframes and id selectors*/
+#s61 {
 	position: absolute;
+  top: 0;
+  left: 0;
+  animation: moveToCenter 5s linear infinite;
 }
+#s62 {
+	position: absolute;
+  top: 0;
+  left: 22%;
+  animation: moveToCenter 4s linear infinite;
+}
+#s63 {
+	position: absolute;
+  top: 0;
+  left: 44%;
+  animation: moveToCenter 3s linear infinite;
+}
+#s64 {
+	position: absolute;
+  top: 0;
+  left: 66%;
+  animation: moveToCenter 2s linear infinite;
+}
+#s65 {
+	position: absolute;
+  top: 0;
+  left: 88%;
+  animation: moveToCenter 5s linear infinite;
+}
+#s66 {
+	position: absolute;
+  top: 22%;
+  left: 88%;
+  animation: moveToCenter 4s linear infinite;
+}
+#s67 {
+	position: absolute;
+  top: 44%;
+  left: 88%;
+  animation: moveToCenter 3s linear infinite;
+}
+#s68 {
+	position: absolute;
+  top: 66%;
+  left: 88%;
+  animation: moveToCenter 2s linear infinite;
+}
+#s69 {
+	position: absolute;
+  top: 88%;
+  left: 88%;
+  animation: moveToCenter 5s linear infinite;
+}
+#s610 {
+	position: absolute;
+  top: 88%;
+  left: 66%;
+  animation: moveToCenter 4s linear infinite;
+}
+#s611 {
+	position: absolute;
+  top: 88%;
+  left: 44%;
+  animation: moveToCenter 3s linear infinite;
+}
+#s612 {
+	position: absolute;
+  top: 88%;
+  left: 22%;
+  animation: moveToCenter 2s linear infinite;
+}
+#s613 {
+	position: absolute;
+  top: 88%;
+  left: 0;
+  animation: moveToCenter 5s linear infinite;
+}
+#s614 {
+	position: absolute;
+  top: 66%;
+  left: 0;
+  animation: moveToCenter 4s linear infinite;
+}
+#s615 {
+	position: absolute;
+  top: 44%;
+  left: 0;
+  animation: moveToCenter 3s linear infinite;
+}
+#s616 {
+	position: absolute;
+  top: 22%;
+  left: 0;
+  animation: moveToCenter 2s linear infinite;
+}
+@keyframes moveToCenter {
+	0% {
+		transform:translate(0);
+	}
+	50% {
+		/*transform:translate(100%);*/
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		opacity: 0;
+	}
+	100% {
+	transform:translate(0);
+	}
 
-/*.content {
-	width: 25%;
-	height: 25%;
-	background-color: red;
-	display: block;
-	animation: stage-4-1 3s linear infinite; }*/
 
-
-
-
-
+/*stage 7 keyframes and id selectors*/
+#s71 {
+	position: absolute;
+  top: 20%;
+  left: 20%;
+  animation: test 5s linear infinite;
+}
+@keyframes test {
+	0% {
+		transform:translate(0);
+	}
+	50% {
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		opacity: 1;
+	}
+	100% {
+	transform:translate(0);
+	}
 
 
 

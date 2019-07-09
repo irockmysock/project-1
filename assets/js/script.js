@@ -7,14 +7,16 @@ var stageThreeArray = [];
 var stageFourArray = [];
 var stageFiveArray = [];
 var stageSixArray = [];
+var stageSevenArray = [];
+var boxesShot = [];
 var CompleteStageOneTime = null;
 var CompleteStageTwoTime = null;
 var CompleteStageThreeTime = null;
 var CompleteStageFourTime = null;
 var CompleteStageFiveTime = null;
 var CompleteStageSixTime = null;
+var CompleteStageSevenTime = null;
 var currentStage = null;
-var boxesShot = [];
 var counter = 0;
 
 ////////////////////
@@ -165,9 +167,46 @@ var checkWinStageFive = function(){
             $('#high-score-modal').modal('show');
         } else {
                 if (parseFloat(CompleteStageFiveTime) < parseFloat(document.getElementById("stage-5-time").innerText)) {
-                document.getElementById("stage-5-time").innerText = CompleteStageFourTime;
+                document.getElementById("stage-5-time").innerText = CompleteStageFiveTime;
                 document.getElementById("modal-title").innerText = `Congratulations`;
                 document.getElementById("modal-text").innerText = `You achieved a new best time of ${CompleteStageFiveTime} seconds.`;
+                $('#high-score-modal').modal('show');
+                }
+        }
+    }
+}
+
+var checkWinStageSix = function(){
+    if (stageSixArray.length+boxesShot.length === boxesShot.length) {
+        stopTimer();
+        if (parseFloat(document.getElementById("stage-6-time").innerText) === 0) {
+            document.getElementById("stage-6-time").innerText = CompleteStageSixTime;
+            document.getElementById("modal-title").innerText = `Stage 6 Complete`;
+            document.getElementById("modal-text").innerText = `Your best time is ${CompleteStageSixTime} seconds.`
+            $('#high-score-modal').modal('show');
+        } else {
+                if (parseFloat(CompleteStageSixTime) < parseFloat(document.getElementById("stage-6-time").innerText)) {
+                document.getElementById("stage-6-time").innerText = CompleteStageSixTime;
+                document.getElementById("modal-title").innerText = `Congratulations`;
+                document.getElementById("modal-text").innerText = `You achieved a new best time of ${CompleteStageSixTime} seconds.`;
+                $('#high-score-modal').modal('show');
+                }
+        }
+    }
+}
+var checkWinStageSeven = function(){
+    if (stageSevenArray.length+boxesShot.length === boxesShot.length) {
+        stopTimer();
+        if (parseFloat(document.getElementById("stage-7-time").innerText) === 0) {
+            document.getElementById("stage-7-time").innerText = CompleteStageSevenTime;
+            document.getElementById("modal-title").innerText = `Stage 7 Complete`;
+            document.getElementById("modal-text").innerText = `Your best time is ${CompleteStageSevenTime} seconds.`
+            $('#high-score-modal').modal('show');
+        } else {
+                if (parseFloat(CompleteStageSevenTime) < parseFloat(document.getElementById("stage-7-time").innerText)) {
+                document.getElementById("stage-7-time").innerText = CompleteStageSevenTime;
+                document.getElementById("modal-title").innerText = `Congratulations`;
+                document.getElementById("modal-text").innerText = `You achieved a new best time of ${CompleteStageSevenTime} seconds.`;
                 $('#high-score-modal').modal('show');
                 }
         }
@@ -219,6 +258,12 @@ var runTimer= function(){
             break;
           case '5':
             CompleteStageFiveTime = timing;
+            break;
+          case '6':
+            CompleteStageSixTime = timing;
+            break;
+          case '7':
+            CompleteStageSixTime = timing;
             break;
         }
         displayTimer(`${timing} seconds`);
@@ -354,7 +399,7 @@ var stageTwoStart = function() {
                             document.querySelectorAll(".shotBox")[i].style.color = "white";
                             document.querySelectorAll(".shotBox")[i].addEventListener('click',fireOnBox);
                         }
-                    }, 2000);
+                    }, 1500);
             }
         }
     }
@@ -429,7 +474,7 @@ var stageThreeStart = function() {
                                     document.querySelectorAll(".shotBox")[i].style.color = "white"
                                     document.querySelectorAll(".shotBox")[i].addEventListener('click',fireOnBox);
                         }
-                    }, 2000);
+                    }, 1500);
             }
         }
     }
@@ -627,12 +672,132 @@ var stageFiveStart = function() {
     }
 }
 
+/////////////////////////////////////////////////////////////////////////
+///////////////////       STAGE SIX        /////////////////////////////
+///  16 Moving Squares - Penalty -> Boxes disappear upon miss shot  ////
+///////////////////////////////////////////////////////////////////////
 
+var stageSixStart = function() {
+    currentStage = "6";
+
+    readyGame();
+    stageSixArray = [];
+    for (i = 1; i < 17; i++) {
+        stageSixArray.push(i);
+    }
+    shuffleArray(stageSixArray);
+    console.log(stageSixArray);
+
+    //create gameboard with 4 numbers in order in moving divs
+    for (i = 0; i < stageSixArray.length; i++) {
+        var shootBox = document.createElement("div");
+        console.log(stageSixArray[i]);
+        shootBox.setAttribute("id", "s6"+(i+1));
+        shootBox.setAttribute("class","shotBox");
+        shootBox.setAttribute("style","box-sizing: border-box; height: 12%; width: 12%; border-radius: 15px; padding: 0; font-size: 20px; padding: 20px 0;");
+        shootBox.style.backgroundColor = createRandomColor();
+        shootBox.innerText = stageSixArray[i];
+        var gameBoard = document.querySelector(".game-board");
+        // document.querySelector(".game-board").style.display = "block";
+        gameBoard.appendChild(shootBox);
+    }
+
+    var fireOnBox   = function() {
+        //sounds and animation
+        var bangSound = new Audio();
+        bangSound.src = "assets/css/sounds/gunshot.mp3";
+        var wrongBang = new Audio();
+        wrongBang.src = "assets/css/sounds/Buzz.mp3";
+        bangAnimate();
+        //box disappears if shot in order
+        if (parseInt(event.target.innerText) === boxesShot.length+1) {
+            bangSound.play();
+            event.target.style.visibility = "hidden";
+            boxesShot.push(event.target.id);
+            console.log("boxes shot: " + boxesShot);
+            for (i=0;i<stageSixArray.length;i++) {
+                if (stageSixArray[i] === parseInt(event.target.innerHTML)) {
+                    stageSixArray.splice(i,1);
+                }
+            }
+            checkWinStageSix();
+        } else {
+           // remaining box disappear and click disabled for 2 seconds
+            wrongBang.play();
+
+            var box = document.querySelectorAll(".shotBox");
+            for (i=0; i<box.length;i++) {
+                for (j=0; j<stageSixArray.length;j++) {
+                    if (parseInt(box[i].innerHTML) === stageSixArray[j]) {
+                    console.log("stage 6 array length is" +stageSixArray.length);
+                    box[i].style.visibility = "hidden";
+                    box[i].removeEventListener('click',fireOnBox);
+                    };
+                };
+            };
+            var returnToNormal = setTimeout(revealAll, 2000);
+        }
+    }
+
+    function revealAll () {
+        var box = document.querySelectorAll(".shotBox");
+        // loop thru everything again
+        for (i=0; i<box.length;i++) {
+            for (j=0; j<stageSixArray.length;j++) {
+                if (parseInt(box[i].innerHTML) === stageSixArray[j]) {
+                    box[i].style.visibility = "visible";
+                    box[i].style.backgroundColor = createRandomColor();
+                    box[i].style.color = "white";
+                    box[i].addEventListener('click',fireOnBox);
+                }
+            }
+        }
+    };
+
+    for (i = 0; i < stageSixArray.length; i++) {
+        var selectBox = document.querySelectorAll(".shotBox");
+        selectBox[i].addEventListener('click',fireOnBox);
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////
+///////////////////      STAGE SEVEN       /////////////////////////////
+///  16 Moving Squares - Penalty -> Boxes disappear upon miss shot  ////
+///////////////////////////////////////////////////////////////////////
+
+var stageSevenStart = function() {
+    currentStage = "7";
+
+    readyGame();
+    stageSevenArray = [];
+    for (i = 1; i < 17; i++) {
+        stageSevenArray.push(i);
+    }
+    // shuffleArray(stageSevenArray);
+    // console.log(stageSevenArray);
+
+    //create gameboard with 4 numbers in order in moving divs
+    for (i = 0; i < stageSevenArray.length; i++) {
+        var shootBox = document.createElement("div");
+        console.log(stageSevenArray[i]);
+        shootBox.setAttribute("id", "s7"+(i+1));
+        shootBox.setAttribute("class","shotBox");
+        shootBox.setAttribute("style","box-sizing: border-box; height: 12%; width: 12%; border-radius: 15px; padding: 0; font-size: 20px; padding: 20px 0;");
+        shootBox.style.backgroundColor = createRandomColor();
+        shootBox.innerText = stageSevenArray[i];
+        var gameBoard = document.querySelector(".game-board");
+        // document.querySelector(".game-board").style.display = "block";
+        gameBoard.appendChild(shootBox);
+    }
+
+//Event listener for choose stage buttons
 document.querySelector("#stage1").addEventListener('click',stageOneStart);
 document.querySelector("#stage2").addEventListener('click',stageTwoStart);
 document.querySelector("#stage3").addEventListener('click',stageThreeStart);
 document.querySelector("#stage4").addEventListener('click',stageFourStart);
 document.querySelector("#stage5").addEventListener('click',stageFiveStart);
+document.querySelector("#stage6").addEventListener('click',stageSixStart);
+document.querySelector("#stage7").addEventListener('click',stageSevenStart);
 
 // document.addEventListener("DOMContentLoaded", function(event) {
 
