@@ -1,4 +1,4 @@
-# Project Name (Start editing here)
+# Project 1 Shoot Shoot Game
 <!---
 Read Me Contents
 -->
