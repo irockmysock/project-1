@@ -7,8 +7,10 @@ Read Me Contents
 
 ### Overview
 
-Let's start out with something fun - **a game!**
+Numero Uno Shooto is a recreation of a classic arcade-style shooter game. The aim of the game is to shoot the numbers on the board in ascending order in the fastest time possible. As the stages progress, the board changes, adding new challenges for the player. 
 
+### Overview
+# ![](assets/css/images/game-background.png)
 Everyone will get a chance to **be creative**, and work through some really **tough programming challenges** – since you've already gotten your feet wet with Tic Tac Toe, it's up to you to come up with a fun and interesting game to build.
 
 **You will be working individually for this project**, but we'll be guiding you along the process and helping as you go. Show us what you've got!

@@ -4,6 +4,9 @@ console.log("Shoot shoot game on!")
 ///GLOBAL VARIABLES//
 /////////////////////
 
+// REFACTOR fireOnBox -- fireOnBox(colorChange)
+
+
 var stage = [{
         number: "1",
         gameArray: [],
@@ -57,6 +60,7 @@ var stage = [{
 var boxesShot = [];
 var currentStage = null;
 var counter = 0;
+var output = document.querySelector('.timer-display');
 
 /////////////////////
 // TIMER FUNCTIONS //
@@ -66,9 +70,9 @@ var startTimer = "";
 
 //display timing in game
 var displayTimer = function( time ){
-        var output = document.querySelector('.timer-display');
-        output.innerText = time;
-    }
+    var output = document.querySelector('.timer-display');
+    output.innerText = time;
+}
 
 //stop the timer display
 var stopTimer = function(){
@@ -125,8 +129,8 @@ var runTimer= function(){
 ////////////////////
 
 //add gunshot sound to click
-// var bangSound = new Audio();
-// bangSound.src = "assets/css/sounds/gunshot.mp3"
+var bangSound = new Audio();
+bangSound.src = "assets/css/sounds/gunshot.mp3"
 
 // var wrongBang = new Audio();
 // wrongBang.src = "assets/css/sounds/Buzz.mp3"
@@ -139,11 +143,11 @@ backgroundSound.src = "assets/css/sounds/Surreal-Chase_Looping.mp3";
 ///////////////////
 
 //shuffle game array to randomize numbers appearing on board
- var shuffleArray = function(array) {
-        for (let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]];
-        }
+var shuffleArray = function(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+    }
 }
 
 //create random color to style shotbox
@@ -231,7 +235,7 @@ var stageOneStart = function() {
 
     //add background in-game music
     backgroundSound.loop=true;
-    backgroundSound.play();
+    // backgroundSound.play();
 
     //create gameboard based on boardsize with random numbers
     for (i = 0; i < stage[0].gameArray.length; i++) {
@@ -248,8 +252,8 @@ var stageOneStart = function() {
     //  click function in game
     var fireOnBox   = function() {
         //sounds and animation
-        var bangSound = new Audio();
-        bangSound.src = "assets/css/sounds/gunshot.mp3"
+        // var bangSound = new Audio();
+        // bangSound.src = "assets/css/sounds/gunshot.mp3"
         bangSound.play();
         bangAnimate();
         //box disappears if shot in order
@@ -300,7 +304,7 @@ var stageTwoStart = function() {
         gameBoard.appendChild(shootBox);
     }
 
-    var fireOnBox   = function() {
+    var fireOnBox   = function(color) {
         //sounds and animation
         var bangSound = new Audio();
         bangSound.src = "assets/css/sounds/gunshot.mp3"
@@ -1653,3 +1657,21 @@ document.querySelector("#stage6").addEventListener('click',stageSixStart);
 //         }
 //     }
 // }
+
+
+
+
+
+
+
+
+var test = function() {
+
+    if (string === "hello"){
+        for (i=0; i<0; i++){
+
+        }
+    } else if (0) {
+
+    } else ()
+} // end of test function
