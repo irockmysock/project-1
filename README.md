@@ -1,4 +1,4 @@
-# Project 1 - Shoot Shoot Game
+# Shoot Shoot Game
 <!---
 Read Me Contents
 -->
